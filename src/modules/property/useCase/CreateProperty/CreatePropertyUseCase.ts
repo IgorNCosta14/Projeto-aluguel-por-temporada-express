@@ -13,17 +13,17 @@ class CreatePropertyUseCase {
   async execute({
     propertyName,
     description,
-    cep,
-    type_of_property,
-    daily_rate,
+    zipCode,
+    typeProperty,
+    dailyRate,
   }: ICreatePropertyDTO): Promise<Property> {
 
     const property = await this.propertiesRepository.create({
       propertyName,
       description,
-      cep,
-      type_of_property,
-      daily_rate,
+      zipCode,
+      typeProperty,
+      dailyRate,
     });
 
     return property;

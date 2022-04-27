@@ -16,7 +16,7 @@ class RentalRepository implements IRentalsRepository {
         userId,
         totalRate,
         startDate,
-        expected_return_date,
+        expectedReturnDate,
         endDate
     }: ICreateRentalDTO): Promise<Rental> {
     const rental = this.repository.create({
@@ -25,7 +25,7 @@ class RentalRepository implements IRentalsRepository {
         userId,
         totalRate,
         startDate,
-        expected_return_date,
+        expectedReturnDate,
         endDate
         })
 

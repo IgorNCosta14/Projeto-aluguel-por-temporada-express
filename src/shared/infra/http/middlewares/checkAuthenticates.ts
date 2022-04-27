@@ -21,21 +21,21 @@ export async function checkAuthenticated(
   const [, token] = authHearder.split(" ");
 
   try {
-    const { sub: user_id } = verify(
+    const { sub: userId } = verify(
       token,
       "e3928a3bc4be46516aa33a79bbdfdb08"
     ) as IPayload;
 
     const usersRepository = new UsersRepository();
 
-    const user = await usersRepository.findById(user_id);
+    const user = await usersRepository.findById(userId);
 
     if (!user) {
       throw new AppError("User does not exists!", 401);
     }
 
     request.user = {
-      id: user_id,
+      id: userId,
     };
 
     next();

@@ -10,6 +10,7 @@ export class property1650664163937 implements MigrationInterface {
                 {
                   name: "id",
                   type: "uuid",
+                  isPrimary: true,
                 },
                 {
                   name: "propertyName",
@@ -20,15 +21,15 @@ export class property1650664163937 implements MigrationInterface {
                   type: "varchar",
                 },
                 {
-                  name: "cep",
+                  name: "zipCode",
                   type: "varchar",
                 },
                 {
-                  name: "type_of_property",
+                  name: "typeProperty",
                   type: "varchar",
                 },
                 {
-                  name: "daily_rate",
+                  name: "dailyRate",
                   type: "numeric",
                 },
                 {
@@ -37,7 +38,7 @@ export class property1650664163937 implements MigrationInterface {
                   default: true,
                 },
                 {
-                  name: "created_at",
+                  name: "createdAt",
                   type: "timestamp",
                   default: "now()",
                 },

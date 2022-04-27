@@ -3,7 +3,7 @@ import { IPropertiesRepository } from "@modules/property/repositories/IPropertie
 import { inject, injectable } from "tsyringe";
 
 interface IRequest {
-    type_of_property : string
+    typeProperty : string
 }
 
 
@@ -14,8 +14,8 @@ class FindPropertyByTypeUseCase {
     private propertiesRepository: IPropertiesRepository
   ) {}
 
-  async execute({ type_of_property }: IRequest): Promise<Property[]> {
-    const property = await this.propertiesRepository.findByTypeOfProperty(type_of_property);
+  async execute({ typeProperty }: IRequest): Promise<Property[]> {
+    const property = await this.propertiesRepository.findByTypeProperty(typeProperty);
 
     return property;
   }

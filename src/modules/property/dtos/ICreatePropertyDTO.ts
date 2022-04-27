@@ -2,11 +2,11 @@ interface ICreatePropertyDTO {
     id?: string;
     propertyName: string;
     description: string;
-    cep: string;
-    type_of_property: string;
+    zipCode: string;
+    typeProperty: string;
     available?: boolean;
-    daily_rate: number;
-    created_at?: Date;
+    dailyRate: number;
+    createdAt?: Date;
   }
   
   export { ICreatePropertyDTO }

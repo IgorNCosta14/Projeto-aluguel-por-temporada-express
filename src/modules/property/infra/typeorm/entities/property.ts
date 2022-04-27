@@ -13,23 +13,24 @@ class Property {
   description: string;
 
   @Column()
-  cep: string;
+  zipCode: string;
 
   @Column()
-  type_of_property: string;
+  typeProperty: string;
 
   @Column()
   available: boolean;
 
   @Column()
-  daily_rate: number;
+  dailyRate: number;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+      this.available = true;
     }
   }
 }

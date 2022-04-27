@@ -5,7 +5,7 @@ interface ICreateUsersDTO {
   email: string;
   password: string;
   isAdmin?: boolean;
-  created_at?: Date;
+  createdAt?: Date;
 }
 
 export { ICreateUsersDTO }

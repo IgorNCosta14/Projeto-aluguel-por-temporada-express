@@ -10,6 +10,7 @@ export class Users1650650831178 implements MigrationInterface {
               {
                 name: "id",
                 type: "uuid",
+                isPrimary: true,
               },
               {
                 name: "name",
@@ -33,7 +34,7 @@ export class Users1650650831178 implements MigrationInterface {
                 default: false,
               },
               {
-                name: "created_at",
+                name: "createdAt",
                 type: "timestamp",
                 default: "now()",
               },

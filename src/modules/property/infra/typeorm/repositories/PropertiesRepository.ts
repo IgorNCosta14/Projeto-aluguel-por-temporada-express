@@ -14,21 +14,21 @@ class PropertiesRepository implements IPropertiesRepository {
     id,
     propertyName,
     description,
-    cep,
-    type_of_property,
+    zipCode,
+    typeProperty,
     available,
-    daily_rate,
-    created_at,
+    dailyRate,
+    createdAt,
   }: ICreatePropertyDTO): Promise<Property> {
     const property = this.repository.create({
       id,
       propertyName,
       description,
-      cep,
-      type_of_property,
+      zipCode,
+      typeProperty,
       available,
-      daily_rate,
-      created_at,
+      dailyRate,
+      createdAt,
     });
 
     await this.repository.save(property);
@@ -39,23 +39,27 @@ class PropertiesRepository implements IPropertiesRepository {
   async delete(id: string): Promise<void> {
     await this.repository.delete(id);
   }
-
-  async list(): Promise<Property[]> {
+  
+  async listAvailableProperty(): Promise<Property[]> {
     const allProperties = await this.repository.find();
 
     return allProperties;
   }
-
-  async findByCep(cep: string): Promise<Property> {
-    const property = await this.repository.findOne({ cep });
-
+  
+  async findById(id: any): Promise<Property> {
+    const property = await this.repository.findOne(id);
     return property;
   }
 
-  async findByTypeOfProperty(type_of_property: string): Promise<Property[]> {
+  async findByZipCode(zipCode: string): Promise<Property> {
+    const property = await this.repository.findOne({ zipCode });
+    return property;
+  }
+
+  async findByTypeProperty(typeProperty: string): Promise<Property[]> {
     const typeQuery = await this.repository
       .createQueryBuilder("p")
-      .where("type_of_property = :type_of_property", { type_of_property });
+      .where("typeProperty = :typeProperty", { typeProperty });
 
     const users = await typeQuery.getMany();
 

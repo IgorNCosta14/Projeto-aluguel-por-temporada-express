@@ -11,8 +11,8 @@ class CreateRentalUseCase {
         private rentalsRepository: IRentalsRepository
     ){}
 
-    async execute({ propertyId, userId, startDate, expected_return_date}: ICreateRentalDTO): Promise<Rental> {
-        const rental = await this.rentalsRepository.create({ propertyId, userId, startDate, expected_return_date});
+    async execute({ propertyId, userId, startDate, expectedReturnDate}: ICreateRentalDTO): Promise<Rental> {
+        const rental = await this.rentalsRepository.create({ propertyId, userId, startDate, expectedReturnDate});
 
         return rental;
     }

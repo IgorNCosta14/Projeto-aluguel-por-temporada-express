@@ -3,17 +3,17 @@ import { IPropertiesRepository } from "@modules/property/repositories/IPropertie
 import { inject, injectable } from "tsyringe";
 
 @injectable()
-class FindPropertyByCEPUseCase {
+class FindPropertyByZipCodeUseCase {
   constructor(
     @inject("PropertiesRepository")
     private propertiesRepository: IPropertiesRepository
   ) {}
 
-  async execute(cep: string): Promise<Property> {
-    const property = await this.propertiesRepository.findByCep(cep);
+  async execute(zipCode: string): Promise<Property> {
+    const property = await this.propertiesRepository.findByZipCode(zipCode);
 
     return property;
   }
 }
 
-export { FindPropertyByCEPUseCase };
+export { FindPropertyByZipCodeUseCase };
