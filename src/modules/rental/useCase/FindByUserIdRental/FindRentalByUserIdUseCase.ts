@@ -1,8 +1,9 @@
 import { Rental } from "@modules/rental/infra/typeorm/entities/rental";
 import { IRentalsRepository } from "@modules/rental/repositories/IRentalsRepository";
 import { AppError } from "@shared/errors/AppError";
-import { inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
+@injectable()
 class FindRentalByUserIdUseCase {
     constructor(
         @inject("RentalsRepository")

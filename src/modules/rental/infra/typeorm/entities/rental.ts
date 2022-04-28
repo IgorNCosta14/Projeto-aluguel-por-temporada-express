@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import { v4 as uuidV4 } from "uuid";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { Property } from "@modules/property/infra/typeorm/entities/property";
+import { User } from "@modules/users/infra/typeorm/entities/user";
+import { v4 as uuidV4 } from "uuid";
 
 @Entity("rentals")
 class Rental {
@@ -13,6 +14,10 @@ class Rental {
 
   @Column()
   propertyId: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: "userId" })
+  user: User;
 
   @Column()
   userId: string;
@@ -28,9 +33,9 @@ class Rental {
 
   @Column()
   endDate: Date;
-  
+
   constructor() {
-    if (!this.id) {
+    if(!this.id) {
       this.id = uuidV4();
     }
   }

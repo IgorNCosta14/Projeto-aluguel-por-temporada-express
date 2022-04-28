@@ -3,7 +3,7 @@ import { IRentalsRepository } from "@modules/rental/repositories/IRentalsReposit
 import { getRepository, Repository } from "typeorm";
 import { Rental } from "../entities/rental";
 
-class RentalRepository implements IRentalsRepository {
+class RentalsRepository implements IRentalsRepository {
     private repository: Repository<Rental>;
 
   constructor() {
@@ -34,12 +34,15 @@ class RentalRepository implements IRentalsRepository {
     }
 
     async list(): Promise<Rental[]> {
-        const rentals = await this.repository.find();
+        const rentals = await this.repository.find({relations: ["property", "user"]});
         return rentals;
     }
 
     async findRentalByUserId(userId: string): Promise<Rental> {
-        const rental = await this.repository.findOne(userId);
+        const rental = await this.repository.findOne({
+            where: { userId },
+            relations: ["user"]
+        });
         return rental;
     }
 
@@ -49,4 +52,4 @@ class RentalRepository implements IRentalsRepository {
     }
 }
 
-export { RentalRepository }
+export { RentalsRepository }

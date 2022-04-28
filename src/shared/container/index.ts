@@ -4,7 +4,7 @@ import { UsersRepository } from "@modules/users/infra/typeorm/repositories/Users
 import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { IPropertiesRepository } from "@modules/property/repositories/IPropertiesRepository";
 import { PropertiesRepository } from "@modules/property/infra/typeorm/repositories/PropertiesRepository";
-import { RentalRepository } from "@modules/rental/infra/typeorm/repositories/RentalRepository";
+import { RentalsRepository } from "@modules/rental/infra/typeorm/repositories/RentalsRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -16,8 +16,8 @@ container.registerSingleton<IPropertiesRepository>(
   PropertiesRepository
 );
 
-container.registerSingleton<RentalRepository>(
-  "RentalRepository",
-  RentalRepository
+container.registerSingleton<RentalsRepository>(
+  "RentalsRepository",
+  RentalsRepository
 );
 

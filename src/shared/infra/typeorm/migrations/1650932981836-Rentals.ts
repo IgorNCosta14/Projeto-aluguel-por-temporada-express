@@ -10,7 +10,6 @@ export class Rentals1650932981836 implements MigrationInterface {
                 {
                   name: "id",
                   type: "uuid",
-                  isPrimary: true,
                 },
                 {
                     name: "userId",
@@ -27,6 +26,11 @@ export class Rentals1650932981836 implements MigrationInterface {
                 },
                 {
                   name: "endDate",
+                  type: "timestamp",
+                  isNullable: true,
+                },    
+                {
+                  name: "expectedReturnDate",
                   type: "timestamp",
                   isNullable: true,
                 },                
