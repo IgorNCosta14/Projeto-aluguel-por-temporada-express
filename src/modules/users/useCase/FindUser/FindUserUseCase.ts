@@ -1,5 +1,6 @@
 import { User } from "@modules/users/infra/typeorm/entities/user";
 import { IUsersRepository } from "@modules/users/repositories/IUsersRepository"
+import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe"
 
 interface IRequest {
@@ -15,6 +16,11 @@ class FindByNameUseCase {
     
     async execute({name}: IRequest): Promise<User[]> {
         const users = this.usersRepository.findByName(name);
+
+        if(!users) {
+            throw new AppError("User not found!")
+        }
+
         return users;
     }
 }

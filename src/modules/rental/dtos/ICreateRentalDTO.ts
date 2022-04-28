@@ -3,7 +3,7 @@ interface ICreateRentalDTO {
   propertyId: string;
   userId: string;
   totalRate?: number;
-  startDate: Date; 
+  startDate?: Date; 
   expectedReturnDate: Date;
   endDate?: Date;
 }

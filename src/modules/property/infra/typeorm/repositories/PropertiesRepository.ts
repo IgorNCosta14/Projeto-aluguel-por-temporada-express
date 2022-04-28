@@ -46,7 +46,7 @@ class PropertiesRepository implements IPropertiesRepository {
     return allProperties;
   }
   
-  async findById(id: any): Promise<Property> {
+  async findById(id: string): Promise<Property> {
     const property = await this.repository.findOne(id);
     return property;
   }

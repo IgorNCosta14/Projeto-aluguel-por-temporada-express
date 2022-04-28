@@ -8,8 +8,8 @@ class ListRentalUseCase {
         private rentalsRepository: IRentalsRepository
     ){}
 
-    execute(): Promise<Rental[]> {
-        const rentals = this.rentalsRepository.list();
+    async execute(): Promise<Rental[]> {
+        const rentals = await this.rentalsRepository.list();
         return rentals;
     }
 }

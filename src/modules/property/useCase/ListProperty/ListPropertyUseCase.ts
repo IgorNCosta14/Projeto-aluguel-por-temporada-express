@@ -8,8 +8,8 @@ class ListPropertyUseCase {
     @inject("PropertiesRepository")
     private propertiesRepository: IPropertiesRepository
   ) {}
-  execute(): Promise<Property[]> {
-    const properties = this.propertiesRepository.list();
+  async execute(): Promise<Property[]> {
+    const properties = await this.propertiesRepository.listAvailableProperty();
     return properties;
   }
 }

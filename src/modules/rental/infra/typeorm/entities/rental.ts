@@ -1,10 +1,10 @@
-import { Property } from "@modules/property/infra/typeorm/entities/property";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { Property } from "@modules/property/infra/typeorm/entities/property";
 
-@Entity("properties")
+@Entity("rentals")
 class Rental {
-  @PrimaryColumn()   //decorator  @
+  @PrimaryColumn()
   id: string;
 
   @ManyToOne(() => Property)
@@ -26,7 +26,7 @@ class Rental {
   @Column()
   expectedReturnDate: Date;
 
-  @CreateDateColumn()
+  @Column()
   endDate: Date;
   
   constructor() {

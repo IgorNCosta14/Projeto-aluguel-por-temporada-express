@@ -17,7 +17,7 @@ class UsersRepository implements IUsersRepository {
     email,
     password,
     isAdmin,
-    created_at,
+    createdAt,
   }: ICreateUsersDTO): Promise<User> {
     const user = this.repository.create({
       id,
@@ -26,7 +26,7 @@ class UsersRepository implements IUsersRepository {
       email,
       password,
       isAdmin,
-      created_at,
+      createdAt,
     });
 
     await this.repository.save(user);

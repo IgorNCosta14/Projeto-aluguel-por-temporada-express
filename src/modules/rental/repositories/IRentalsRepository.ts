@@ -4,8 +4,8 @@ import { Rental } from "../infra/typeorm/entities/rental"
 interface IRentalsRepository {
     create(data: ICreateRentalDTO): Promise<Rental>;
     list(): Promise<Rental[]>;
-    findRentalByUser(userId: string): Promise<Rental>;
-    findRentalByPropertyName(propertyId: string): Promise<Rental>;
+    findRentalByUserId(userId: string): Promise<Rental>;
+    findRentalByPropertyId(propertyId: string): Promise<Rental>;
 }
 
 export { IRentalsRepository }
