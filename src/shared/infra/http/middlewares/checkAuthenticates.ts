@@ -1,4 +1,4 @@
-import { UsersRepository } from "@modules/users/infra/typeorm/repositories/UsersRepository";
+import { UsersRepository } from "@modules/account/users/infra/typeorm/repositories/UsersRepository";
 import { AppError } from "@shared/errors/AppError";
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";

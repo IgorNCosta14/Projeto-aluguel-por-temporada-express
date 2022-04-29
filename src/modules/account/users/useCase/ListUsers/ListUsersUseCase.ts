@@ -1,4 +1,4 @@
-import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/account/users/repositories/IUsersRepository";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

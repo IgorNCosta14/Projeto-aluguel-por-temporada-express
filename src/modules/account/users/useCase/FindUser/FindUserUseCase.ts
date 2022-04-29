@@ -1,5 +1,5 @@
-import { User } from "@modules/users/infra/typeorm/entities/user";
-import { IUsersRepository } from "@modules/users/repositories/IUsersRepository"
+import { User } from "@modules/account/users/infra/typeorm/entities/user";
+import { IUsersRepository } from "@modules/account/users/repositories/IUsersRepository"
 import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe"
 

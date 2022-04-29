@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { Property } from "@modules/property/infra/typeorm/entities/property";
-import { User } from "@modules/users/infra/typeorm/entities/user";
+import { User } from "@modules/account/users/infra/typeorm/entities/user";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity("rentals")

@@ -1,4 +1,4 @@
-import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/account/users/repositories/IUsersRepository";
 import { AppError } from "@shared/errors/AppError";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";

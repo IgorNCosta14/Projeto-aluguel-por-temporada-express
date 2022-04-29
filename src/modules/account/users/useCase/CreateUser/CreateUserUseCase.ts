@@ -1,6 +1,6 @@
-import { ICreateUsersDTO } from "@modules/users/dtos/ICreateUserDTO";
-import { User } from "@modules/users/infra/typeorm/entities/user";
-import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
+import { ICreateUsersDTO } from "@modules/account/users/dtos/ICreateUserDTO";
+import { User } from "@modules/account/users/infra/typeorm/entities/user";
+import { IUsersRepository } from "@modules/account/users/repositories/IUsersRepository";
 import { AppError } from "@shared/errors/AppError";
 import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe";
