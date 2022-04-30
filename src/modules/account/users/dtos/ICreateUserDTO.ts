@@ -4,7 +4,7 @@ interface ICreateUsersDTO {
   cpf: string;
   email: string;
   password: string;
-  isAdmin?: boolean;
+  userPermission?: string;
   createdAt?: Date;
 }
 

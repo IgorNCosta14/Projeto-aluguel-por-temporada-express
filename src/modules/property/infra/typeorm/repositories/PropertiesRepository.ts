@@ -37,7 +37,7 @@ class PropertiesRepository implements IPropertiesRepository {
   }
 
   async delete(id: string): Promise<void> {
-    await this.repository.delete(id);
+    await this.repository.delete({id});
   }
   
   async listAvailableProperty(): Promise<Property[]> {
@@ -47,7 +47,7 @@ class PropertiesRepository implements IPropertiesRepository {
   }
   
   async findById(id: string): Promise<Property> {
-    const property = await this.repository.findOne(id);
+    const property = await this.repository.findOne({id});
     return property;
   }
 

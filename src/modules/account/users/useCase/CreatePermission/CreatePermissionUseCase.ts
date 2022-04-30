@@ -11,7 +11,7 @@ class CreatePermissionUseCase {
         private permissionsRepository: IPermissionsRepository
     ) {}
 
-   async execute({ name }: ICreatePermissionDTO): Promise<Permission> {
+   async execute({name, isLandlord, isAdmin}: ICreatePermissionDTO): Promise<Permission> {
 
         const permissionAlreadyExists = await this.permissionsRepository.findByName(name);
 
@@ -19,7 +19,7 @@ class CreatePermissionUseCase {
             throw new AppError("Permission name already in use!")
         }
 
-       const permission = await this.permissionsRepository.create({ name })
+       const permission = await this.permissionsRepository.create({ name, isLandlord, isAdmin })
 
        return permission;
    }

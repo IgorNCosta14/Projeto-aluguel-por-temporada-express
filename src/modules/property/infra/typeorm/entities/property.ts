@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from "uuid";
 
 @Entity("properties")
 class Property {
-  @PrimaryColumn()   //decorator  @
+  @PrimaryColumn()
   id: string;
 
   @Column()

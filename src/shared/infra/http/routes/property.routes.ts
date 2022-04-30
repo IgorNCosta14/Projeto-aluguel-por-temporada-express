@@ -15,8 +15,8 @@ const findPropertyByZipCodeController = new FindPropertyByZipCodeController();
 const findPropertyByTypeController = new FindPropertyByTypeController();
 const listPropertyController = new ListPropertyController();
 
-propertyRoutes.post("/", checkAuthenticated, checkAdmin, createPropertyController.handle);
-propertyRoutes.delete("/:id", checkAuthenticated, checkAdmin, deletePropertyController.handle);
+propertyRoutes.post("/", createPropertyController.handle);
+propertyRoutes.delete("/:id", deletePropertyController.handle);
 propertyRoutes.get("/zipCode", findPropertyByZipCodeController.handle);
 propertyRoutes.get("/type", findPropertyByTypeController.handle);
 propertyRoutes.get("/", listPropertyController.handle);

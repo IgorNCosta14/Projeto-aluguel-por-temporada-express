@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { Permission } from "./permission";
 
 @Entity("users")
 class User {
@@ -18,8 +19,12 @@ class User {
   @Column()
   password: string;
 
+  @ManyToOne(() => Permission)
+  @JoinColumn({ name: "userPermission" })
+  permission: Permission;
+
   @Column()
-  isAdmin: boolean;
+  userPermission: string;
 
   @CreateDateColumn()
   createdAt: Date;

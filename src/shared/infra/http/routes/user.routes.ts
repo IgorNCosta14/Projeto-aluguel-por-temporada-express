@@ -12,7 +12,7 @@ const listUsersController = new ListUsersController();
 const findUserController = new FindUserController();
 
 usersRoutes.post("/", createUserController.handle);
-usersRoutes.get("/", checkAuthenticated, checkAdmin, listUsersController.handle);
-usersRoutes.get("/find", checkAuthenticated, checkAdmin,findUserController.handle);
+usersRoutes.get("/", listUsersController.handle);
+usersRoutes.get("/find", findUserController.handle);
 
 export { usersRoutes };

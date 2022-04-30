@@ -29,14 +29,23 @@ export class Users1650650831178 implements MigrationInterface {
                 type: "varchar",
               },
               {
-                name: "isAdmin",
-                type: "boolean",
-                default: false,
+                name: "userPermission",
+                type: "uuid",
               },
               {
                 name: "createdAt",
                 type: "timestamp",
                 default: "now()",
+              },
+            ],
+            foreignKeys: [
+              {
+                name: "FKUserPermission",
+                referencedTableName: "permissions",
+                referencedColumnNames: ["id"],
+                columnNames: ["userPermission"],
+                onDelete: "SET NULL",
+                onUpdate: "SET NULL",
               },
             ],
           })

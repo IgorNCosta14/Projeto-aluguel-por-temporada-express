@@ -31,25 +31,27 @@ class PermissionsRepository implements IPermissionsRepository {
   }
 
   async list(): Promise<Permission[]> {
-    const permissions = await this.repository.find();
+    const permissions = await this.repository.find({
+      relations: ["permission"]
+    });
 
     return permissions;
   }
 
   async findByName(name: string): Promise<Permission> {
-    const permission = await this.repository.findOne(name);
+    const permission = await this.repository.findOne({name});
 
     return permission;
   }
   
   async findById(id: string): Promise<Permission> {
-    const permission = await this.repository.findOne(id);
+    const permission = await this.repository.findOne({id});
 
     return permission;
   }
 
   async delete(id: string): Promise<void> {
-    await this.repository.delete(id);
+    await this.repository.delete({id});
   }
 }
 

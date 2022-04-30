@@ -10,11 +10,12 @@ export class Rentals1650932981836 implements MigrationInterface {
                 {
                   name: "id",
                   type: "uuid",
+                  isPrimary: true,
                 },
                 {
-                    name: "userId",
-                    type: "uuid",
-                  },
+                  name: "userId",
+                  type: "uuid",
+                },
                 {
                   name: "propertyId",
                   type: "uuid",
