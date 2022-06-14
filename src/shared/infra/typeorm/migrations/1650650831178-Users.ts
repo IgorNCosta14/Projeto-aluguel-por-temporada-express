@@ -28,26 +28,26 @@ export class Users1650650831178 implements MigrationInterface {
                 name: "cpf",
                 type: "varchar",
               },
-              {
-                name: "userPermission",
-                type: "uuid",
-              },
+              // {
+              //   name: "userPermission",
+              //   type: "uuid",
+              // },
               {
                 name: "createdAt",
                 type: "timestamp",
                 default: "now()",
               },
             ],
-            foreignKeys: [
-              {
-                name: "FKUserPermission",
-                referencedTableName: "permissions",
-                referencedColumnNames: ["id"],
-                columnNames: ["userPermission"],
-                onDelete: "SET NULL",
-                onUpdate: "SET NULL",
-              },
-            ],
+            // foreignKeys: [
+            //   {
+            //     name: "FKUserPermission",
+            //     referencedTableName: "permissions",
+            //     referencedColumnNames: ["id"],
+            //     columnNames: ["userPermission"],
+            //     onDelete: "SET NULL",
+            //     onUpdate: "SET NULL",
+            //   },
+            // ],
           })
         )
     }

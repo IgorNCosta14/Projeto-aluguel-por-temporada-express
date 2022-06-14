@@ -19,12 +19,8 @@ class User {
   @Column()
   password: string;
 
-  @ManyToOne(() => Permission)
-  @JoinColumn({ name: "userPermission" })
-  permission: Permission;
-
-  @Column()
-  userPermission: string;
+  // @Column()
+  // userPermission: string;
 
   @CreateDateColumn()
   createdAt: Date;

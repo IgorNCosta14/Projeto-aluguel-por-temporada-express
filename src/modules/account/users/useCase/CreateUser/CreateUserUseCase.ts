@@ -17,6 +17,7 @@ class CreateUserUseCase {
     cpf,
     email,
     password,
+    userPermission,
   }: ICreateUsersDTO): Promise<User> {
 
     const emailAlreadyInUse = await this.usersRepository.findByEmail(email);
@@ -37,6 +38,7 @@ class CreateUserUseCase {
       name,
       cpf,
       email,
+      userPermission,
       password: passwordHash,
     });
 
