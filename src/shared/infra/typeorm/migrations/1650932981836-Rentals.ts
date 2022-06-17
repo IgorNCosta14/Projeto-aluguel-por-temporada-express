@@ -21,9 +21,9 @@ export class Rentals1650932981836 implements MigrationInterface {
                   type: "uuid",
                 },
                 {
-                    name: "startDate",
-                    type: "timestamp",
-                    default: "now()",
+                  name: "startDate",
+                  type: "timestamp",
+                  default: "now()",
                 },
                 {
                   name: "endDate",
@@ -36,9 +36,9 @@ export class Rentals1650932981836 implements MigrationInterface {
                   isNullable: true,
                 },                
                 {
-                    name: "totalRate",
-                    type: "numeric",
-                    isNullable: true,
+                  name: "totalRate",
+                  type: "numeric",
+                  isNullable: true,
                 },
               ],
               foreignKeys: [
