@@ -10,6 +10,9 @@ class Property {
   propertyName: string;
 
   @Column()
+  propertyOwner: string;
+
+  @Column()
   description: string;
 
   @Column()
@@ -26,6 +29,9 @@ class Property {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @CreateDateColumn()
+  updatedAt: Date;
 
   constructor() {
     if (!this.id) {
