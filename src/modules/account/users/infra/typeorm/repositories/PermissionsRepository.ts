@@ -9,16 +9,14 @@ class PermissionsRepository implements IPermissionsRepository {
   constructor() {
     this.repository = getRepository(Permission);
   }
-  
+
   async create({
-    id,
     name,
     isLandlord,
     isAdmin,
     createdAt,
   }: ICreatePermissionDTO): Promise<Permission> {
     const permission = this.repository.create({
-      id,
       name,
       isLandlord,
       isAdmin,
@@ -31,9 +29,7 @@ class PermissionsRepository implements IPermissionsRepository {
   }
 
   async list(): Promise<Permission[]> {
-    const permissions = await this.repository.find({
-      relations: ["permission"]
-    });
+    const permissions = await this.repository.find();
 
     return permissions;
   }
@@ -44,13 +40,13 @@ class PermissionsRepository implements IPermissionsRepository {
     return permission;
   }
   
-  async findById(id: string): Promise<Permission> {
+  async findById(id: number): Promise<Permission> {
     const permission = await this.repository.findOne({id});
 
     return permission;
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.repository.delete({id});
   }
 }
