@@ -14,21 +14,25 @@ class PropertiesRepository implements IPropertiesRepository {
     id,
     propertyName,
     description,
+    propertyOwner,
     zipCode,
     typeProperty,
     available,
     dailyRate,
     createdAt,
+    updatedAt,
   }: ICreatePropertyDTO): Promise<Property> {
     const property = this.repository.create({
       id,
       propertyName,
       description,
+      propertyOwner,
       zipCode,
       typeProperty,
       available,
       dailyRate,
       createdAt,
+      updatedAt,
     });
 
     await this.repository.save(property);
