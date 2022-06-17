@@ -15,7 +15,8 @@ class CreatePropertyUseCase {
     description,
     zipCode,
     typeProperty,
-    dailyRate,
+    dailyRate, 
+    propertyOwner,
   }: ICreatePropertyDTO): Promise<Property> {
 
     const property = await this.propertiesRepository.create({
@@ -24,6 +25,7 @@ class CreatePropertyUseCase {
       zipCode,
       typeProperty,
       dailyRate,
+      propertyOwner
     });
 
     return property;
