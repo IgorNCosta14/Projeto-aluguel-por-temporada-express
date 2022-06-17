@@ -33,7 +33,9 @@ class UsersRepository implements IUsersRepository {
   }
 
   async list(): Promise<User[]> {
-    const users = await this.repository.find();
+    const users = await this.repository.find({
+      relations: ["permission"]
+    });
 
     return users;
   }
@@ -61,9 +63,17 @@ class UsersRepository implements IUsersRepository {
   }
 
   async findById(id: string): Promise<User> {
-    const user = await this.repository.findOne({ id });
+    const user = await this.repository.findOne({ where: { id }, relations: ["permission"] });
 
     return user;
+  }
+
+  async updateToLandLord(id: string): Promise<void> {
+    const user = await this.repository.findOne(id);
+
+    user.userPermission = 2;
+
+    await this.repository.save(user);
   }
 }
 
