@@ -1,8 +1,13 @@
 import { UsersRepository } from "@modules/account/users/infra/typeorm/repositories/UsersRepository";
 import { AppError } from "@shared/errors/AppError";
 import { NextFunction, Request, Response } from "express";
+import { verify } from "jsonwebtoken";
 
-export async function checkAdmin(
+interface IPayload {
+  sub: string;
+}
+
+export async function checkLandLord(
   request: Request,
   response: Response,
   next: NextFunction
@@ -12,8 +17,8 @@ export async function checkAdmin(
   const usersRepository = new UsersRepository();
   const user = await usersRepository.findById(id);
 
-  if (user.permission.isAdmin === false) {
-    throw new AppError("User isn't admin!");
+  if ((user.permission.isLandlord === false) && (user.permission.isAdmin === false)) {
+    throw new AppError("User isn't Landlord!");
   }
 
   return next();
