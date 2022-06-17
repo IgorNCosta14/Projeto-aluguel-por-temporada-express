@@ -1,5 +1,5 @@
 interface ICreatePermissionDTO {
-  id?: string;
+  id?: number;
   name: string;
   isLandlord?: boolean;
   isAdmin?: boolean;

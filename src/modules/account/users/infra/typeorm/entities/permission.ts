@@ -1,10 +1,9 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
-import { v4 as uuidV4 } from "uuid";
 
 @Entity("permissions")
 class Permission {
   @PrimaryColumn()
-  id: string;
+  id: number;
 
   @Column()
   name: string;
@@ -20,7 +19,6 @@ class Permission {
 
   constructor() {
     if (!this.id) {
-      this.id = uuidV4();
       this.isAdmin = false;
       this.isLandlord = false;
     }

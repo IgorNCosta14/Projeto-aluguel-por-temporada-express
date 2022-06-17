@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { Permission } from "./permission";
 
@@ -19,8 +19,12 @@ class User {
   @Column()
   password: string;
 
-  // @Column()
-  // userPermission: string;
+  @Column()
+  userPermission: number;
+
+  @ManyToOne(() => Permission)
+  @JoinColumn({ name: "userPermission" })
+  permission: Permission;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -28,6 +32,7 @@ class User {
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+      this.userPermission = 1
     }
   }
 }
