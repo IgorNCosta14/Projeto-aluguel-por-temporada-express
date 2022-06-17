@@ -3,6 +3,7 @@ import { DevolutionRentalController } from "@modules/rental/useCase/DevolutionRe
 import { FindRentalByUserIdController } from "@modules/rental/useCase/FindByUserIdRental/FindRentalByUserIdController";
 import { ListRentalController } from "@modules/rental/useCase/ListRentals/ListRentalController";
 import { Router } from "express";
+import { checkAuthenticated } from "../middlewares/checkAuthenticates";
 
 const rentalsRoutes = Router()
 
@@ -11,8 +12,8 @@ const devolutionRentalController = new DevolutionRentalController();
 const findRentalByUserIdController = new FindRentalByUserIdController();
 const listRentalController = new ListRentalController();
 
-rentalsRoutes.post("/", createRentalController.handle);
-rentalsRoutes.get("/userrental", findRentalByUserIdController.handle);
-rentalsRoutes.get("/", listRentalController.handle);
+rentalsRoutes.post("/", checkAuthenticated, createRentalController.handle);
+rentalsRoutes.get("/userrental", checkAuthenticated, findRentalByUserIdController.handle);
+rentalsRoutes.get("/", checkAuthenticated, listRentalController.handle);
 
 export { rentalsRoutes };

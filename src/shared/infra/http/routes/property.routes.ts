@@ -4,8 +4,9 @@ import { FindPropertyByZipCodeController } from "@modules/property/useCase/FindP
 import { FindPropertyByTypeController } from "@modules/property/useCase/FindPropertyByType/FindPropertyByTypeController";
 import { ListPropertyController } from "@modules/property/useCase/ListProperty/ListPropertyController";
 import { Router } from "express";
-import { checkAdmin } from "../middlewares/checkAdmin";
 import { checkAuthenticated } from "../middlewares/checkAuthenticates";
+import { checkLandLord } from "../middlewares/checkLandLord";
+import { UpdatePropertyController } from "@modules/property/useCase/UpdateProperty/UpdatePropertyController";
 
 const propertyRoutes = Router();
 
@@ -14,9 +15,11 @@ const deletePropertyController = new DeletePropertyController();
 const findPropertyByZipCodeController = new FindPropertyByZipCodeController();
 const findPropertyByTypeController = new FindPropertyByTypeController();
 const listPropertyController = new ListPropertyController();
+const updatePropertyController = new UpdatePropertyController();
 
-propertyRoutes.post("/", createPropertyController.handle);
-propertyRoutes.delete("/:id", deletePropertyController.handle);
+propertyRoutes.post("/",checkAuthenticated, checkLandLord, createPropertyController.handle);
+propertyRoutes.delete("/:id", checkAuthenticated, checkLandLord, deletePropertyController.handle);
+propertyRoutes.patch("/:id", checkAuthenticated, checkLandLord, updatePropertyController.handle);
 propertyRoutes.get("/zipCode", findPropertyByZipCodeController.handle);
 propertyRoutes.get("/type", findPropertyByTypeController.handle);
 propertyRoutes.get("/", listPropertyController.handle);
