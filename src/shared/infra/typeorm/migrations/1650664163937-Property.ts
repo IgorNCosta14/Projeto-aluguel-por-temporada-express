@@ -21,7 +21,11 @@ export class property1650664163937 implements MigrationInterface {
                   type: "varchar",
                 },
                 {
-                  name: "zipCode",
+                  name: "propertyAddressId",
+                  type: "int",
+                },
+                {
+                  name: "propertyNumber",
                   type: "varchar",
                 },
                 {
