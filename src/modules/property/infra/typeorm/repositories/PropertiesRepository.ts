@@ -15,7 +15,8 @@ class PropertiesRepository implements IPropertiesRepository {
     propertyName,
     description,
     propertyOwner,
-    zipCode,
+    propertyAddressId,
+    propertyNumber,
     typeProperty,
     available,
     dailyRate,
@@ -27,7 +28,8 @@ class PropertiesRepository implements IPropertiesRepository {
       propertyName,
       description,
       propertyOwner,
-      zipCode,
+      propertyAddressId,
+      propertyNumber,
       typeProperty,
       available,
       dailyRate,
@@ -45,29 +47,45 @@ class PropertiesRepository implements IPropertiesRepository {
   }
   
   async listAvailableProperty(): Promise<Property[]> {
-    const allProperties = await this.repository.find();
+    const allProperties = await this.repository.find({
+      where: { available: true },
+      relations:["address"]
+    })
 
     return allProperties;
   }
   
   async findById(id: string): Promise<Property> {
-    const property = await this.repository.findOne({id});
-    return property;
-  }
-
-  async findByZipCode(zipCode: string): Promise<Property> {
-    const property = await this.repository.findOne({ zipCode });
+    const property = await this.repository.findOne({
+      where: {id: id},
+      relations: ["address"]
+    });
     return property;
   }
 
   async findByTypeProperty(typeProperty: string): Promise<Property[]> {
-    const typeQuery = await this.repository
-      .createQueryBuilder("p")
-      .where("typeProperty = :typeProperty", { typeProperty });
+    const  property = await this.repository.find({
+      where: { typeProperty: typeProperty },
+      relations: ["address"]
+    })
 
-    const users = await typeQuery.getMany();
+    return  property;
+  }
 
-    return users;
+  async findPropertyByAddressId(propertyAddressId: number): Promise<Property[]> {
+    const property = await this.repository.find({
+      where: {propertyAddressId: propertyAddressId},
+      relations: ["address"]
+    });
+    return property;
+  }
+
+  async findPropertyByOwner(propertyOwner: string): Promise<Property[]> {
+    const property = await this.repository.find({
+      where: {propertyOwner: propertyOwner},
+      relations: ["address"]
+    });
+    return property;
   }
 }
 

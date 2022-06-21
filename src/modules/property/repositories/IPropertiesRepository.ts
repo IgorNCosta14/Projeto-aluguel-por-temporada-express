@@ -6,8 +6,9 @@ interface IPropertiesRepository {
   delete(id: string): Promise<void>;
   listAvailableProperty(): Promise<Property[]>;
   findById(id: string): Promise<Property>;
-  findByZipCode(zipCode:string):Promise<Property>;
+  findPropertyByAddressId(propertyAddressId: number):Promise<Property[]>;
   findByTypeProperty(typeProperty: string): Promise<Property[]>;
+  findPropertyByOwner(propertyOwner: string): Promise<Property[]>;
 }
 
 export { IPropertiesRepository }
