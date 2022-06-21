@@ -19,7 +19,7 @@ class AddressRepository implements IAddressRepository {
     }
 
     async findByZipCode(zipCode: string): Promise<Address> {
-        const address = await this.repository.findOne(zipCode);
+        const address = await this.repository.findOne({zipCode});
 
         return address;
     }
