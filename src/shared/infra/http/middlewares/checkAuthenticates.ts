@@ -34,6 +34,10 @@ export async function checkAuthenticated(
       throw new AppError("User does not exists!", 401);
     }
 
+    if (user.activeUser === false) {
+      throw new AppError("Inactive user!", 401);
+    }
+
     request.user = {
       id: userId,
     };
