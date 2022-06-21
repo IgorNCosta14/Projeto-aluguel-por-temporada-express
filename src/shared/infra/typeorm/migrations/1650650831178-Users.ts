@@ -33,6 +33,10 @@ export class Users1650650831178 implements MigrationInterface {
                 type: "int",
               },
               {
+                name: "activeUser",
+                type: "boolean"
+              },
+              {
                 name: "createdAt",
                 type: "timestamp",
                 default: "now()",
