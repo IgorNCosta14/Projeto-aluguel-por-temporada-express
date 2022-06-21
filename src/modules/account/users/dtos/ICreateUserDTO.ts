@@ -5,6 +5,7 @@ interface ICreateUsersDTO {
   email: string;
   password: string;
   userPermission?: string;
+  activeUser?: boolean;
   createdAt?: Date;
 }
 

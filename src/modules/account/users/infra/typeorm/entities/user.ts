@@ -26,13 +26,17 @@ class User {
   @JoinColumn({ name: "userPermission" })
   permission: Permission;
 
+  @Column()
+  activeUser: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
-      this.userPermission = 1
+      this.userPermission = 1;
+      this.activeUser= true;
     }
   }
 }
