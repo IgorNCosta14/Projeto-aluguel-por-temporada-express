@@ -1,4 +1,5 @@
 import { Property } from "@modules/property/infra/typeorm/entities/property";
+import { IAddressRepository } from "@modules/property/repositories/IAddressRepository";
 import { IPropertiesRepository } from "@modules/property/repositories/IPropertiesRepository";
 import { inject, injectable } from "tsyringe";
 
@@ -6,11 +7,16 @@ import { inject, injectable } from "tsyringe";
 class FindPropertyByZipCodeUseCase {
   constructor(
     @inject("PropertiesRepository")
-    private propertiesRepository: IPropertiesRepository
+    private propertiesRepository: IPropertiesRepository,
+
+    @inject("AddressRepository")
+    private addressRepository: IAddressRepository
   ) {}
 
-  async execute(zipCode: string): Promise<Property> {
-    const property = await this.propertiesRepository.findByZipCode(zipCode);
+  async execute(zipCode: string): Promise<Property[]> {
+    const addressId = await this.addressRepository.findByZipCode(zipCode);
+    
+    const property = await this.propertiesRepository.findByPropertyAddressId(addressId.id);
 
     return property;
   }
