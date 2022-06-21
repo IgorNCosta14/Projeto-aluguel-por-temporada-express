@@ -9,6 +9,7 @@ interface IUsersRepository {
     findByCPF(cpf: string): Promise<User>;
     findByName(name: string): Promise<User[]>;
     findById(id: string): Promise<User>;
+    deactivatingUser(data: User): Promise<void>;
 }
 
 export { IUsersRepository }

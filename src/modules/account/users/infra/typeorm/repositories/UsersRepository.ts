@@ -75,6 +75,10 @@ class UsersRepository implements IUsersRepository {
 
     await this.repository.save(user);
   }
+
+  async deactivatingUser(data: User): Promise<void> {
+    await this.repository.save(data);
+  }
 }
 
 export { UsersRepository };
