@@ -4,13 +4,13 @@ import { CreatePropertyUseCase } from "./CreatePropertyUseCase";
 
 class CreatePropertyController {
   async  handle(request: Request, response: Response): Promise<Response> {
-    const { propertyName, description, zipCode, typeProperty, dailyRate } = request.body;
+    const { propertyName, description, zipCode, typeProperty, dailyRate, country, state, city, street, propertyNumber } = request.body;
 
     const { id: propertyOwner } = request.user;
 
     const createPropertyUseCase = container.resolve(CreatePropertyUseCase)
 
-    const property = await createPropertyUseCase.execute({propertyName, description, zipCode, typeProperty, dailyRate, propertyOwner })
+    const property = await createPropertyUseCase.execute({ propertyName, description, zipCode, typeProperty, dailyRate, propertyOwner, country, state, city, street, propertyNumber })
 
     return response.status(201).json(property);
   }

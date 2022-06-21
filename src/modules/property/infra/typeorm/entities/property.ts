@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { Address } from "./address";
 
 @Entity("properties")
 class Property {
@@ -16,7 +17,14 @@ class Property {
   description: string;
 
   @Column()
-  zipCode: string;
+  propertyAddressId: number;
+
+  @ManyToOne(() => Address)
+  @JoinColumn({ name: "propertyAddressId" })
+  address: Address;
+
+  @Column()
+  propertyNumber: string;
 
   @Column()
   typeProperty: string;

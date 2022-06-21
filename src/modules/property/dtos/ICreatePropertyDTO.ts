@@ -3,12 +3,18 @@ interface ICreatePropertyDTO {
     propertyName: string;
     description: string;
     propertyOwner?: string;
-    zipCode: string;
+    propertyAddressId?: number;
+    propertyNumber: string;
     typeProperty: string;
     available?: boolean;
     dailyRate: number;
     createdAt?: Date;
     updatedAt?: Date;
+    zipCode?: string;
+    country?: string;
+    state?: string;
+    city?: string;
+    street?: string;
   }
   
   export { ICreatePropertyDTO }
