@@ -7,7 +7,7 @@ import { Router } from "express";
 import { checkAuthenticated } from "../middlewares/checkAuthenticates";
 import { checkLandLord } from "../middlewares/checkLandLord";
 import { UpdatePropertyController } from "@modules/property/useCase/UpdateProperty/UpdatePropertyController";
-import { FindPropertyByOwnerController } from "@modules/property/useCase/FindPropertyByOwner/findPropertyByOwnerController";
+import { FindPropertyByOwnerController } from "@modules/property/useCase/FindPropertyByOwner/FindPropertyByOwnerController";
 
 const propertyRoutes = Router();
 
