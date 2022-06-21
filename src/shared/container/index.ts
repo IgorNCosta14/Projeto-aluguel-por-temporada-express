@@ -8,6 +8,8 @@ import { RentalsRepository } from "@modules/rental/infra/typeorm/repositories/Re
 import { IRentalsRepository } from "@modules/rental/repositories/IRentalsRepository";
 import { IPermissionsRepository } from "@modules/account/users/repositories/IPermissionsRepository";
 import { PermissionsRepository } from "@modules/account/users/infra/typeorm/repositories/PermissionsRepository";
+import { IAddressRepository } from "@modules/property/repositories/IAddressRepository";
+import { AddressRepository } from "@modules/property/infra/typeorm/repositories/AddressRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -29,4 +31,7 @@ container.registerSingleton<IPermissionsRepository>(
   PermissionsRepository
 );
 
-
+container.registerSingleton<IAddressRepository>(
+  "AddressRepository",
+  AddressRepository
+);
