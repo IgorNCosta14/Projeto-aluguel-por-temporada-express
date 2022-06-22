@@ -1,5 +1,7 @@
 import { container } from "tsyringe";
 
+import "@shared/container/providers/DateProvider"
+
 import { UsersRepository } from "@modules/account/users/infra/typeorm/repositories/UsersRepository";
 import { IUsersRepository } from "@modules/account/users/repositories/IUsersRepository";
 import { IPropertiesRepository } from "@modules/property/repositories/IPropertiesRepository";
