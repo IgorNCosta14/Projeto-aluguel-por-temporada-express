@@ -4,13 +4,13 @@ import { DevolutionRentalUseCase } from "./DevolutionRentalUseCase";
 
 class DevolutionRentalController {
     async handle(request: Request, response: Response): Promise<Response> {
-      
+      const { id: rentalId } = request.params;
         
       const devolutionPropertyUseCase = container.resolve(DevolutionRentalUseCase)
 
-      await devolutionPropertyUseCase.execute();
+      const rental = await devolutionPropertyUseCase.execute(rentalId);
 
-      return response.send();
+      return response.json(rental);
     }
 }
 
