@@ -32,6 +32,9 @@ class Rental {
   expectedReturnDate: Date;
 
   @Column()
+  expectedTotalRate: number;
+
+  @Column()
   endDate: Date;
 
   constructor() {
