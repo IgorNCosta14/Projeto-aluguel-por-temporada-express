@@ -54,6 +54,14 @@ class PropertiesRepository implements IPropertiesRepository {
 
     return allProperties;
   }
+
+  async updateAvailableState( id: string, available: boolean ): Promise<void> {
+    const property = await this.repository.findOne({id})
+
+    property.available = available
+
+    await this.repository.save(property)
+  }
   
   async findById(id: string): Promise<Property> {
     const property = await this.repository.findOne({
