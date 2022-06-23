@@ -6,6 +6,7 @@ interface IRentalsRepository {
     list(): Promise<Rental[]>;
     findRentalByUserId(userId: string): Promise<Rental>;
     findRentalByPropertyId(propertyId: string): Promise<Rental>;
+    findById(id: string): Promise<Rental>;
 }
 
 export { IRentalsRepository }

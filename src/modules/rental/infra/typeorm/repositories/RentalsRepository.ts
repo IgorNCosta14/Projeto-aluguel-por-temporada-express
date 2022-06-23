@@ -6,11 +6,11 @@ import { Rental } from "../entities/rental";
 class RentalsRepository implements IRentalsRepository {
     private repository: Repository<Rental>;
 
-  constructor() {
-    this.repository = getRepository(Rental);
-  }
-
-   async create({
+    constructor() {
+        this.repository = getRepository(Rental);
+    }
+    
+    async create({
         id,
         propertyId,
         userId,
@@ -47,9 +47,15 @@ class RentalsRepository implements IRentalsRepository {
     }
 
     async findRentalByPropertyId(propertyId: string): Promise<Rental> {
-        const rental = await this.repository.findOne(propertyId);
+        const rental = await this.repository.findOne({ propertyId });
         return rental;
     }
+
+    async findById(id: string): Promise<Rental> {
+        const rental = await this.repository.findOne({ id });
+        return rental;
+    }
+
 }
 
 export { RentalsRepository }
