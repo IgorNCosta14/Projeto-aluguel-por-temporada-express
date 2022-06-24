@@ -2,6 +2,7 @@ import { ICreatePropertyDTO } from "@modules/property/dtos/ICreatePropertyDTO";
 import { Property } from "@modules/property/infra/typeorm/entities/property";
 import { IAddressRepository } from "@modules/property/repositories/IAddressRepository";
 import { IPropertiesRepository } from "@modules/property/repositories/IPropertiesRepository";
+import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
@@ -28,9 +29,11 @@ class CreatePropertyUseCase {
     street,
   }: ICreatePropertyDTO): Promise<Property> {
 
-    const address = await this.addressRepository.findByZipCode(zipCode)
+    if( dailyRate <= 0 ) {
+      throw new AppError("Daily rate must be greater than zero!")
+    }
 
-    console.log(address)
+    const address = await this.addressRepository.findByZipCode(zipCode)
 
     if(!address) {
       await this.addressRepository.create({
@@ -56,8 +59,6 @@ class CreatePropertyUseCase {
       return property;
 
     } else {
-
-      console.log(address)
 
       const property = await this.propertiesRepository.create({
         propertyName,
