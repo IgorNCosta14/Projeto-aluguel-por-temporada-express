@@ -25,22 +25,24 @@ class CreateRentalUseCase {
         const findProperty = await this.propertiesRepository.findById(propertyId);
 
         if(findProperty.available === false) {
-            throw new AppError("Property not available!")
+            throw new AppError("Property not available!");
         }
 
-        const startDate = this.dateProvider.dateNow()
-        const endDate = expectedReturnDate
+        const startDate = this.dateProvider.dateNow();
+        const endDate = expectedReturnDate;
 
         const dateDifference = this.dateProvider.compare(endDate, startDate)
 
-        const expectedTotalRate = ((Math.ceil(dateDifference))*findProperty.dailyRate);
+        if(dateDifference <= 0) {
+            throw new AppError("The return date cannot be less than the current date!");
+        }
 
-        console.log(Math.ceil(dateDifference), startDate, endDate, expectedTotalRate)
+        const expectedTotalRate = ((Math.ceil(dateDifference))*findProperty.dailyRate);
 
         const rental = await this.rentalsRepository.create({ propertyId, userId, expectedReturnDate, expectedTotalRate });
 
         const available = false;
-        const id = propertyId
+        const id = propertyId;
 
         await this.propertiesRepository.updateAvailableState(id, available)
 
