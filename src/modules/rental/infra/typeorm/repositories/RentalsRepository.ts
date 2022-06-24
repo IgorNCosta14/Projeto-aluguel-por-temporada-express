@@ -9,7 +9,7 @@ class RentalsRepository implements IRentalsRepository {
     constructor() {
         this.repository = getRepository(Rental);
     }
-    
+        
     async create({
         id,
         propertyId,
@@ -40,12 +40,13 @@ class RentalsRepository implements IRentalsRepository {
         return rentals;
     }
 
-    async findRentalByUserId(userId: string): Promise<Rental> {
-        const rental = await this.repository.findOne({
+    async findRentalByUserId(userId: string): Promise<Rental[]> {
+        const rentals = await this.repository.find({
             where: { userId },
-            relations: ["user"]
+            relations: ["property", "user"]
         });
-        return rental;
+
+        return rentals;
     }
 
     async findRentalByPropertyId(propertyId: string): Promise<Rental> {
@@ -58,6 +59,35 @@ class RentalsRepository implements IRentalsRepository {
         return rental;
     }
 
+    async findUserRentals(id: string): Promise<Rental[]> {
+        const rentals = await this.repository.find({
+            where: { userId: id },
+            relations: ["property", "user"]
+        });
+        return rentals;
+    }
+
+    async listFinishedRentals(): Promise<Rental[]> {
+        const rentals = await this.repository.find({
+            relations: ["property", "user"]
+        });
+        return rentals;
+    }
+
+    async listRentalsInProgress(): Promise<Rental[]> {
+        const rentals = await this.repository.find({
+            where: { endDate: null },
+            relations: ["property", "user"]
+        });
+        return rentals;
+    }
+
+    async delete(id: string): Promise<void> {
+        await this.repository.delete({id: id });
+    }
+    async update(id: string): Promise<Rental> {
+        throw new Error("Method not implemented.");
+    }
 }
 
 export { RentalsRepository }
