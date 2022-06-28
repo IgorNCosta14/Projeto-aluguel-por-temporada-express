@@ -11,7 +11,7 @@ class UpdatePropertyUseCase {
         private propertiesRepository: IPropertiesRepository
       ) {}
 
-    async execute({ id, propertyName, description, propertyNumber, typeProperty, dailyRate, propertyOwner }: ICreatePropertyDTO): Promise<Property> {
+    async execute({ id, propertyName, description, propertyNumber, typeProperty, dailyRate, propertyOwner, lateFee }: ICreatePropertyDTO): Promise<Property> {
         const property = await this.propertiesRepository.findById(id);
 
         if(!property) {
@@ -28,6 +28,7 @@ class UpdatePropertyUseCase {
         property.typeProperty = typeProperty;
         property.dailyRate = dailyRate;
         property.updatedAt = new Date();
+        property.lateFee = lateFee;
 
         await this.propertiesRepository.create(property);
 

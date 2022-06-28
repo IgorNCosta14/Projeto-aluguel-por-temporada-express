@@ -15,6 +15,7 @@ interface ICreatePropertyDTO {
     state?: string;
     city?: string;
     street?: string;
+    lateFee?: number;
   }
   
   export { ICreatePropertyDTO }

@@ -27,6 +27,7 @@ class CreatePropertyUseCase {
     state, 
     city, 
     street,
+    lateFee,
   }: ICreatePropertyDTO): Promise<Property> {
 
     if( dailyRate <= 0 ) {
@@ -54,6 +55,7 @@ class CreatePropertyUseCase {
         propertyAddressId: address.id,
         propertyNumber,
         dailyRate,
+        lateFee
       });
 
       return property;
@@ -68,6 +70,7 @@ class CreatePropertyUseCase {
         propertyAddressId: address.id,
         propertyNumber,
         dailyRate,
+        lateFee
       });
 
       return property;

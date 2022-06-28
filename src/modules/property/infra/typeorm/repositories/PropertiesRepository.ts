@@ -22,6 +22,7 @@ class PropertiesRepository implements IPropertiesRepository {
     dailyRate,
     createdAt,
     updatedAt,
+    lateFee
   }: ICreatePropertyDTO): Promise<Property> {
     const property = this.repository.create({
       id,
@@ -35,6 +36,7 @@ class PropertiesRepository implements IPropertiesRepository {
       dailyRate,
       createdAt,
       updatedAt,
+      lateFee
     });
 
     await this.repository.save(property);

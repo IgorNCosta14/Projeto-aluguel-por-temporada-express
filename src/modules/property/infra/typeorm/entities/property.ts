@@ -40,6 +40,9 @@ class Property {
 
   @CreateDateColumn()
   updatedAt: Date;
+  
+  @Column()
+  lateFee: number;
 
   constructor() {
     if (!this.id) {

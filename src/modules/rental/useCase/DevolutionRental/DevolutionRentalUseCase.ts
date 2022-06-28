@@ -31,9 +31,15 @@ class DevolutionRentalUseCase {
 
         const dateDifference = this.dateProvider.compare(rental.expectedReturnDate, rental.startDate)
 
-        const rentalTotalRate = (Math.ceil(dateDifference)*property.dailyRate);
+        if(rental.expectedReturnDate <= rental.endDate) {
 
-        rental.totalRate = rentalTotalRate;
+            rental.totalRate = (Math.ceil(dateDifference)*property.dailyRate);
+
+        } else {
+
+            rental.totalRate = (Math.ceil(dateDifference)*property.dailyRate);
+            
+        }
 
         await this.rentalsRepository.create(rental);
 
