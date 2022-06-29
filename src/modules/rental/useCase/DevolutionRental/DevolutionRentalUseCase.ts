@@ -31,13 +31,18 @@ class DevolutionRentalUseCase {
 
         const dateDifference = this.dateProvider.compare(rental.expectedReturnDate, rental.startDate)
 
-        if(rental.expectedReturnDate <= rental.endDate) {
-
+        if(rental.expectedReturnDate >= rental.endDate) {
             rental.totalRate = (Math.ceil(dateDifference)*property.dailyRate);
 
         } else {
+            const lateFeeDifference = this.dateProvider.compare(rental.endDate, rental.expectedReturnDate)
+            console.log(lateFeeDifference, dateDifference)
 
-            rental.totalRate = (Math.ceil(dateDifference)*property.dailyRate);
+            rental.totalRate = (Math.ceil(dateDifference)*property.dailyRate)+(Math.ceil(lateFeeDifference)*property.lateFee);
+
+            console.log(Math.ceil(dateDifference)*property.dailyRate, Math.ceil(lateFeeDifference)*property.lateFee)
+
+            console.log(lateFeeDifference, dateDifference)
             
         }
 
