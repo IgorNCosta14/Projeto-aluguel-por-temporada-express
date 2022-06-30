@@ -25,6 +25,9 @@ class Rental {
   @Column()
   totalRate: number;
 
+  @Column()
+  totalLateFee?: number;
+
   @CreateDateColumn()
   startDate: Date; 
 
