@@ -27,23 +27,19 @@ class DevolutionRentalUseCase {
 
         const property = await this.propertiesRepository.findById(rental.propertyId);
 
-        rental.endDate = this.dateProvider.dateNow();
+        rental.endDate = this.dateProvider.dateNow()
 
-        const dateDifference = this.dateProvider.compare(rental.expectedReturnDate, rental.startDate)
+        const totalDaysRental = Math.ceil(this.dateProvider.compare(rental.endDate , rental.startDate))
+
+        const expectedDaysRental = Math.ceil(this.dateProvider.compare(rental.expectedReturnDate , rental.startDate))
 
         if(rental.expectedReturnDate >= rental.endDate) {
-            rental.totalRate = (Math.ceil(dateDifference)*property.dailyRate);
+            rental.totalRate = (totalDaysRental*property.dailyRate);
 
         } else {
-            const lateFeeDifference = this.dateProvider.compare(rental.endDate, rental.expectedReturnDate)
-            console.log(lateFeeDifference, dateDifference)
+            rental.totalLateFee = (totalDaysRental-expectedDaysRental)*property.lateFee;
 
-            rental.totalRate = (Math.ceil(dateDifference)*property.dailyRate)+(Math.ceil(lateFeeDifference)*property.lateFee);
-
-            console.log(Math.ceil(dateDifference)*property.dailyRate, Math.ceil(lateFeeDifference)*property.lateFee)
-
-            console.log(lateFeeDifference, dateDifference)
-            
+            rental.totalRate = expectedDaysRental*property.dailyRate + rental.totalLateFee;
         }
 
         await this.rentalsRepository.create(rental);
