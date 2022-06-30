@@ -24,7 +24,7 @@ class AddressRepository implements IAddressRepository {
         return address;
     }
 
-    async findById(id: string): Promise<Address> {
+    async findById(id: number): Promise<Address> {
         const address = await this.repository.findOne(id);
 
         return address;

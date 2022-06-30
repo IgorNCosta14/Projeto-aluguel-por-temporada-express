@@ -4,7 +4,7 @@ import { Address } from "../infra/typeorm/entities/address";
 interface IAddressRepository {
     create(data: ICreateAddressDTO): Promise<Address>;
     findByZipCode(zipCode: string): Promise<Address>;
-    findById(id: string): Promise<Address>;
+    findById(id: number): Promise<Address>;
 }
 
 export { IAddressRepository }
