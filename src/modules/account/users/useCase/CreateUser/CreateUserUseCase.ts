@@ -3,7 +3,8 @@ import { User } from "@modules/account/users/infra/typeorm/entities/user";
 import { IUsersRepository } from "@modules/account/users/repositories/IUsersRepository";
 import { AppError } from "@shared/errors/AppError";
 import { hash } from "bcryptjs";
-import { inject, injectable } from "tsyringe";
+import { container, inject, injectable } from "tsyringe";
+import { Utils } from "utils/Utils";
 
 @injectable()
 class CreateUserUseCase {
@@ -19,10 +20,20 @@ class CreateUserUseCase {
     password,
   }: ICreateUsersDTO): Promise<User> {
 
+    const utils = container.resolve(Utils)
+
+    if(utils.validateEmail(email) === false) {
+      throw new AppError("Invalid email!");
+    }
+
     const emailAlreadyInUse = await this.usersRepository.findByEmail(email);
 
     if(emailAlreadyInUse) {
       throw new AppError("Email already in use");
+    }
+
+    if(utils.validateCPF(cpf) === false) {
+      throw new AppError("Invalid cpf!");
     }
 
     const cpfAlreadyRegistered = await this.usersRepository.findByCPF(cpf);
