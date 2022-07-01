@@ -16,6 +16,7 @@
       "@modules/*": ["modules/*"],
       "@shared/*": ["shared/*"],
       "@errors/*": ["shared/errors/*"],
+      "@utils/*": ["utils/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
