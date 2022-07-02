@@ -9,15 +9,15 @@ class PermissionsRepositoryInMemory implements IPermissionsRepository {
         name,
         isLandlord,
         isAdmin,
-        createdAt,
     }: ICreatePermissionDTO): Promise<Permission> {
         const permission = new Permission();
 
         Object.assign(permission, {
+            id: (this.permissions.length + 1),
             name,
             isLandlord,
             isAdmin,
-            createdAt,
+            createdAt: new Date(),
         });
 
         this.permissions.push(permission);
