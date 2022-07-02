@@ -6,22 +6,19 @@ class UserRepositoryInMemory implements IUsersRepository{
     Users: User[] = []
 
     async create({
-        id,
         name,
         cpf,
         email,
-        password,
-        createdAt
+        password
     }: ICreateUsersDTO): Promise<User> {
         const user = new User();
         
         Object.assign(user, {
-            id,
             name,
             cpf,
             email,
             password,
-            createdAt
+            createdAt: new Date()
         });
 
         this.Users.push(user);
@@ -36,7 +33,11 @@ class UserRepositoryInMemory implements IUsersRepository{
     }
 
     async updateToLandLord(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
+        const user = this.Users.find((user) => user.id === id);
+
+        user.userPermission = 2;
+
+        this.Users.push(user);
     }
 
     async findByEmail(email: string): Promise<User> {
