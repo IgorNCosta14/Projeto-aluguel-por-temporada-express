@@ -15,10 +15,10 @@ class FindByNameUseCase {
       ) {}
     
     async execute({name}: IRequest): Promise<User[]> {
-        const users = this.usersRepository.findByName(name);
+        const users = await this.usersRepository.findByName(name);
 
-        if(!users) {
-            throw new AppError("User not found!")
+        if(users.length === 0) {
+            throw new AppError("No user found with this name!");
         }
 
         return users;

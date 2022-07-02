@@ -2,9 +2,9 @@ import { ICreateUsersDTO } from "@modules/account/users/dtos/ICreateUserDTO";
 import { User } from "@modules/account/users/infra/typeorm/entities/user";
 import { IUsersRepository } from "@modules/account/users/repositories/IUsersRepository";
 import { AppError } from "@shared/errors/AppError";
+import { Utils } from "@utils/Utils";
 import { hash } from "bcryptjs";
 import { container, inject, injectable } from "tsyringe";
-import { Utils } from "utils/Utils";
 
 @injectable()
 class CreateUserUseCase {
@@ -29,7 +29,7 @@ class CreateUserUseCase {
     const emailAlreadyInUse = await this.usersRepository.findByEmail(email);
 
     if(emailAlreadyInUse) {
-      throw new AppError("Email already in use");
+      throw new AppError("Email already in use!");
     }
 
     if(utils.validateCPF(cpf) === false) {
@@ -39,7 +39,7 @@ class CreateUserUseCase {
     const cpfAlreadyRegistered = await this.usersRepository.findByCPF(cpf);
 
     if(cpfAlreadyRegistered) {
-      throw new AppError("CPF already registered");
+      throw new AppError("CPF already registered!");
     }
 
     const passwordHash = await hash(password, 8);
