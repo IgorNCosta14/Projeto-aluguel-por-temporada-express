@@ -16,11 +16,16 @@ describe("Find User", () => {
 
         await userRepositoryInMemory.create({name: "user 2",cpf: "873.778.890-63",email: "test2@test.com",password: "test"})
 
+        await userRepositoryInMemory.create({name: "user 2",cpf: "652.571.180-09",email: "test3@test.com",password: "test"})
+
 
         const user = await findUserUseCase.execute({name: "user 2"})
 
+        expect(user.length).toEqual(2);
         expect(user[0].name).toEqual("user 2");
         expect(user[0].cpf).toEqual("873.778.890-63");
+        expect(user[1].name).toEqual("user 2");
+        expect(user[1].cpf).toEqual("652.571.180-09");
     });
 
     it("Should not be possible to find an user that does not exist", async () => {
