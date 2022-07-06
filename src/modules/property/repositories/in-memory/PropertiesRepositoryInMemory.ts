@@ -6,33 +6,27 @@ class PropertiesRepositoryInMemory implements IPropertiesRepository{
     properties: Property[] = []
 
     async create({
-        id,
         propertyName,
         description,
         propertyOwner,
         propertyAddressId,
         propertyNumber,
         typeProperty,
-        available,
         dailyRate,
-        createdAt,
-        updatedAt,
         lateFee
     }: ICreatePropertyDTO): Promise<Property> {
         const property = new Property();
 
         Object.assign(property, {
-            id,
             propertyName,
             description,
             propertyOwner,
             propertyAddressId,
             propertyNumber,
             typeProperty,
-            available,
             dailyRate,
-            createdAt,
-            updatedAt,
+            createdAt: new Date(),
+            updatedAt: new Date(),
             lateFee
         })
 
