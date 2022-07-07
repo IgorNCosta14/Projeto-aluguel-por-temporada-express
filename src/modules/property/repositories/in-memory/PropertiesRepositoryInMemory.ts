@@ -38,7 +38,7 @@ class PropertiesRepositoryInMemory implements IPropertiesRepository{
     async delete(id: string): Promise<void> {
         const propertyIndex = this.properties.findIndex((property) => property.id === id);
 
-        this.properties.slice(propertyIndex, 1);
+        this.properties.splice(propertyIndex, 1);
     }
 
     async listAvailableProperty(): Promise<Property[]> {
