@@ -16,7 +16,7 @@ class FindPropertyByZipCodeUseCase {
   async execute(zipCode: string): Promise<Property[]> {
     const addressId = await this.addressRepository.findByZipCode(zipCode);
     
-    const property = await this.propertiesRepository.findByPropertyAddressId(addressId.id);
+    const property = await this.propertiesRepository.findPropertyByAddressId(addressId.id);
 
     return property;
   }
