@@ -35,6 +35,12 @@ class AddressRepositoryInMemory implements IAddressRepository {
 
         return address;
     }
+
+    async findAll(): Promise<Address[]> {
+        const addresses = this.addresses;
+
+        return addresses;
+    }
 }
 
 export { AddressRepositoryInMemory }

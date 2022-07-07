@@ -29,6 +29,12 @@ class AddressRepository implements IAddressRepository {
 
         return address;
     }
+
+    async findAll(): Promise<Address[]> {
+        const addresses = await this.repository.find();
+
+        return addresses;
+    }
 }
 
 export { AddressRepository }
