@@ -11,7 +11,6 @@ class PropertiesRepository implements IPropertiesRepository {
   }
 
   async create({
-    id,
     propertyName,
     description,
     propertyOwner,
@@ -25,7 +24,6 @@ class PropertiesRepository implements IPropertiesRepository {
     lateFee
   }: ICreatePropertyDTO): Promise<Property> {
     const property = this.repository.create({
-      id,
       propertyName,
       description,
       propertyOwner,
