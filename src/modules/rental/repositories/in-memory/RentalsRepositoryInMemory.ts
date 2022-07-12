@@ -2,29 +2,26 @@ import { ICreateRentalDTO } from "@modules/rental/dtos/ICreateRentalDTO";
 import { Rental } from "@modules/rental/infra/typeorm/entities/rental";
 import { IRentalsRepository } from "../IRentalsRepository";
 
-class RentalRepositoryInMemory implements IRentalsRepository {
+class RentalsRepositoryInMemory implements IRentalsRepository {
     rentals: Rental[] = []
 
     async create({
-        id,
         propertyId,
         userId,
-        totalRate,
-        totalLateFee,
-        startDate,
+        totalRate = null,
+        totalLateFee = null,
         expectedReturnDate,
         expectedTotalRate,
-        endDate
+        endDate = null
     }: ICreateRentalDTO): Promise<Rental> {
         const rental = new Rental()
 
         Object.assign(rental, {
-            id,
             propertyId,
             userId,
             totalRate,
             totalLateFee,
-            startDate,
+            startDate: new Date(),
             expectedReturnDate,
             expectedTotalRate,
             endDate
@@ -82,4 +79,4 @@ class RentalRepositoryInMemory implements IRentalsRepository {
     }
 }
 
-export { RentalRepositoryInMemory }
+export { RentalsRepositoryInMemory }
