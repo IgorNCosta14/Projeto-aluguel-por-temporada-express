@@ -7,7 +7,7 @@ import { RentalsRepositoryInMemory } from "@modules/rental/repositories/in-memor
 import { DateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
 import { CreateRentalUseCase } from "../CreateRental/CreateRentalUseCase";
-import { DevolutionRentalUseCase } from "./DevolutionRentalUseCase";
+import { UpdateRentalUseCase } from "./UpdateRentalUseCase";
 
 let createPropertyUseCase: CreatePropertyUseCase;
 let addressRepositoryInMemory: AddressRepositoryInMemory;
@@ -17,9 +17,9 @@ let createUserUseCase: CreateUserUseCase;
 let createRentalUseCase: CreateRentalUseCase;
 let rentalsRepositoryInMemory: RentalsRepositoryInMemory;
 let dateProvider: DateProvider;
-let devolutionRentalUseCase: DevolutionRentalUseCase;
+let updateRentalUseCase: UpdateRentalUseCase;
 
-describe("", () => {
+describe("Update rental", () => {
     beforeEach(() => {
         userRepositoryInMemory = new UserRepositoryInMemory();
         createUserUseCase = new CreateUserUseCase(userRepositoryInMemory);
@@ -32,10 +32,10 @@ describe("", () => {
         rentalsRepositoryInMemory = new RentalsRepositoryInMemory()
         createRentalUseCase = new CreateRentalUseCase(rentalsRepositoryInMemory, propertiesRepositoryInMemory, dateProvider)
 
-        devolutionRentalUseCase = new DevolutionRentalUseCase(rentalsRepositoryInMemory, propertiesRepositoryInMemory, dateProvider)
+        updateRentalUseCase = new UpdateRentalUseCase(rentalsRepositoryInMemory);
     })
 
-    it("Should be possible to return a rent", async () => {
+    it("Should be possible to update the rental information", async () => {
         const user = await createUserUseCase.execute({name: "user name test",cpf: "616.670.640-53",email: "test@test.com",password: "test"});
 
         const property = await createPropertyUseCase.execute({
@@ -53,27 +53,42 @@ describe("", () => {
             lateFee: 50
         });
 
-        const expectedReturnDate = dateProvider.addDays(2)
+        const expectedReturnDate = dateProvider.addDays(2);
+        const newTestExpectedReturnDate = dateProvider.addDays(1);
+        const newTestEndDate = dateProvider.addDays(3);
 
         const rental = await createRentalUseCase.execute({propertyId: property.id, userId: user.id, expectedReturnDate});
 
-        expect(rental).toHaveProperty("id");
-        expect(rental).toHaveProperty("expectedTotalRate");
-        expect(rental.expectedTotalRate).toBe(2000);
-        expect(rental.totalRate).toBe(null);
-        expect(rental.totalLateFee).toBe(null);
-        expect(rental.endDate).toBe(null);
+        const rentalsBefore = await rentalsRepositoryInMemory.findById(rental.id)
 
-        await devolutionRentalUseCase.execute(rental.id);
+        const arrayBefore = await rentalsRepositoryInMemory.list();
 
-        const rentalFinished = await rentalsRepositoryInMemory.findById(rental.id);
+        expect(arrayBefore.length).toEqual(1);
+        expect(rentalsBefore.expectedReturnDate).toEqual(expectedReturnDate);
+        expect(rentalsBefore.endDate).toEqual(null);
 
-        expect(rentalFinished.expectedTotalRate).toBe(2000);
-        expect(rentalFinished.totalRate).toBe(2000);
-        expect(rentalFinished.totalLateFee).toBe(null);
+
+        await updateRentalUseCase.execute({
+            id: rental.id, 
+            propertyId: rental.propertyId,
+            userId: rental.userId, 
+            startDate: rental.startDate, 
+            expectedReturnDate: newTestExpectedReturnDate, 
+            expectedTotalRate: 1234, 
+            endDate: newTestEndDate
+        })
+
+        const rentalsAfter = await rentalsRepositoryInMemory.findById(rental.id)
+
+        const arrayAfter = await rentalsRepositoryInMemory.list();
+
+        expect(arrayAfter.length).toEqual(1);
+        expect(rentalsAfter.expectedReturnDate).toEqual(newTestExpectedReturnDate);
+        expect(rentalsAfter.expectedTotalRate).toEqual(1234)
+        expect(rentalsAfter.endDate).toEqual(newTestEndDate);
     })
 
-    it("Should not be possible to finalize a rental that has already ended", async () => {
+    it("Should not be possible to update information for a rental that does not exist", async () => {
         const user = await createUserUseCase.execute({name: "user name test",cpf: "616.670.640-53",email: "test@test.com",password: "test"});
 
         const property = await createPropertyUseCase.execute({
@@ -91,12 +106,18 @@ describe("", () => {
             lateFee: 50
         });
 
-        const expectedReturnDate = dateProvider.addDays(2)
+        const newTestExpectedReturnDate = dateProvider.addDays(1);
+        const newTestEndDate = dateProvider.addDays(3);
 
-        const rental = await createRentalUseCase.execute({propertyId: property.id, userId: user.id, expectedReturnDate});
+        await expect(updateRentalUseCase.execute({
+            id: "89bf76f1-b7bf-4991-9dbb-a3d843e2b5ff", 
+            propertyId: property.id,
+            userId: user.id, 
+            startDate: new Date(), 
+            expectedReturnDate: newTestExpectedReturnDate, 
+            expectedTotalRate: 1234, 
+            endDate: newTestEndDate
+        })).rejects.toEqual(new AppError("Rental not found!"));
 
-        await devolutionRentalUseCase.execute(rental.id)
-
-        await expect(devolutionRentalUseCase.execute(rental.id)).rejects.toEqual(new AppError("Rent already finished!"));
     })
-})
+}) 

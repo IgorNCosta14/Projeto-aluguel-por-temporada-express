@@ -13,7 +13,7 @@ class FindRentalByUserIdUseCase {
     async execute(id: string): Promise<Rental[]> {
         const rental = await this.rentalsRepository.findRentalByUserId(id);
 
-        if(!rental) {
+        if(rental.length === 0) {
             throw new AppError("Rental not found!")
         }
 
