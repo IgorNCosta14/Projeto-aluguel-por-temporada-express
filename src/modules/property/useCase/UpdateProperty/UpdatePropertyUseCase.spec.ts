@@ -45,8 +45,6 @@ describe("Update property", () => {
 
         const propertyUpdated = await propertiesRepositoryInMemory.findById(property.id)
 
-        console.log(await propertiesRepositoryInMemory.listAvailableProperty())
-
         expect(propertyUpdated.id).toEqual(property.id);
     })
 }) 
