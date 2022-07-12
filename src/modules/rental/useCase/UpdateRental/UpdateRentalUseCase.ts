@@ -1,6 +1,7 @@
 import { ICreateRentalDTO } from "@modules/rental/dtos/ICreateRentalDTO";
 import { Rental } from "@modules/rental/infra/typeorm/entities/rental";
 import { IRentalsRepository } from "@modules/rental/repositories/IRentalsRepository";
+import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
@@ -12,6 +13,10 @@ class UpdateRentalUseCase {
 
     async execute({id, propertyId, userId, startDate, expectedReturnDate, expectedTotalRate, endDate}: ICreateRentalDTO): Promise<Rental> {
         const rental = await this.rentalsRepository.findById(id);
+
+        if(!rental) {
+            throw new AppError("Rental not found!")
+        }
 
         rental.propertyId = propertyId;
         rental.userId = userId,
