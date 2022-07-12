@@ -6,6 +6,7 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     rentals: Rental[] = []
 
     async create({
+        id,
         propertyId,
         userId,
         totalRate = null,
@@ -16,20 +17,34 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     }: ICreateRentalDTO): Promise<Rental> {
         const rental = new Rental()
 
-        Object.assign(rental, {
-            propertyId,
-            userId,
-            totalRate,
-            totalLateFee,
-            startDate: new Date(),
-            expectedReturnDate,
-            expectedTotalRate,
-            endDate
-        })
+        if(!id) {
+            Object.assign(rental, {
+                propertyId,
+                userId,
+                totalRate,
+                totalLateFee,
+                startDate: new Date(),
+                expectedReturnDate,
+                expectedTotalRate,
+                endDate
+            })
 
-        this.rentals.push(rental);
+            this.rentals.push(rental);
 
-        return rental;
+            return rental;
+        } else { 
+            const rental = await this.findById(id);
+
+            rental.propertyId = propertyId,
+            rental.userId = userId,
+            rental.totalRate = totalRate,
+            rental.totalLateFee = totalLateFee,
+            rental.expectedReturnDate = expectedReturnDate,
+            rental.expectedTotalRate = expectedTotalRate,
+            rental.endDate = endDate
+
+            return rental;
+        }
     }
 
     async delete(id: string): Promise<void> {

@@ -7,6 +7,7 @@ class PropertiesRepositoryInMemory implements IPropertiesRepository{
     properties: Property[] = []
 
     async create({
+        id,
         propertyName,
         description,
         propertyOwner,
@@ -14,26 +15,39 @@ class PropertiesRepositoryInMemory implements IPropertiesRepository{
         propertyNumber,
         typeProperty,
         dailyRate,
-        lateFee
+        lateFee,
+        updatedAt
     }: ICreatePropertyDTO): Promise<Property> {
         const property = new Property();
 
-        Object.assign(property, {
-            propertyName,
-            description,
-            propertyOwner,
-            propertyAddressId,
-            propertyNumber,
-            typeProperty,
-            dailyRate,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            lateFee
-        })
+        if(!id) {
+            Object.assign(property, {
+                propertyName,
+                description,
+                propertyOwner,
+                propertyAddressId,
+                propertyNumber,
+                typeProperty,
+                dailyRate,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                lateFee
+            })
 
-        this.properties.push(property);
+            this.properties.push(property);
 
-        return property;
+            return property;
+        } else {
+            const property = await this.findById(id);
+
+            property.propertyName = propertyName,
+            property.description= description,
+            property.propertyNumber = propertyNumber,
+            property.typeProperty = typeProperty,
+            property.dailyRate = dailyRate,
+            property.updatedAt = updatedAt,
+            property.lateFee = lateFee
+        }
 
     }
 
