@@ -20,7 +20,7 @@ class CreateRentalUseCase {
         private dateProvider: IDateProvider
     ){}
 
-    async execute({ propertyId, userId, expectedReturnDate}: ICreateRentalDTO): Promise<Rental> {
+    async execute({ propertyId, userId, expectedReturnDate }: ICreateRentalDTO): Promise<Rental> {
         
         const findProperty = await this.propertiesRepository.findById(propertyId);
 
@@ -44,7 +44,7 @@ class CreateRentalUseCase {
         const available = false;
         const id = propertyId;
 
-        await this.propertiesRepository.updateAvailableState(id, available)
+        await this.propertiesRepository.updateAvailableState({ id, available })
 
         return rental;
     }

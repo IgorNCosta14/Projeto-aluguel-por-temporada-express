@@ -34,7 +34,7 @@ class DevolutionRentalUseCase {
         const expectedDaysRental = Math.ceil(this.dateProvider.compare(rental.expectedReturnDate , rental.startDate))
 
         if(rental.expectedReturnDate >= rental.endDate) {
-            rental.totalRate = (totalDaysRental*property.dailyRate);
+            rental.totalRate = rental.expectedTotalRate;
 
         } else {
             rental.totalLateFee = (totalDaysRental-expectedDaysRental)*property.lateFee;
@@ -47,7 +47,7 @@ class DevolutionRentalUseCase {
         const available = true;
         const id = rental.propertyId;
 
-        await this.propertiesRepository.updateAvailableState(id, available);
+        await this.propertiesRepository.updateAvailableState({id, available});
 
         return rental
     }
