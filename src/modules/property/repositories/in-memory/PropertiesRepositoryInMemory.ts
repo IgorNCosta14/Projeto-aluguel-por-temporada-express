@@ -1,4 +1,5 @@
 import { ICreatePropertyDTO } from "@modules/property/dtos/ICreatePropertyDTO";
+import { IUpdateAvailableStateDTO } from "@modules/property/dtos/IUpdateAvailableStateDTO";
 import { Property } from "@modules/property/infra/typeorm/entities/property";
 import { IPropertiesRepository } from "../IPropertiesRepository";
 
@@ -33,6 +34,7 @@ class PropertiesRepositoryInMemory implements IPropertiesRepository{
         this.properties.push(property);
 
         return property;
+
     }
 
     async delete(id: string): Promise<void> {
@@ -44,15 +46,13 @@ class PropertiesRepositoryInMemory implements IPropertiesRepository{
     async listAvailableProperty(): Promise<Property[]> {
         const properties = this.properties.filter((property) => property.available === true);
 
-        return properties;
+        return properties;    
     }
 
-    async updateAvailableState(id: string, available: boolean): Promise<void> {
+    async updateAvailableState({ id, available }: IUpdateAvailableStateDTO): Promise<void> {
         const property = this.properties.find((property) => property.id === id);
 
         property.available = available;
-
-        this.properties.push(property)
     }
 
     async findById(id: string): Promise<Property> {
