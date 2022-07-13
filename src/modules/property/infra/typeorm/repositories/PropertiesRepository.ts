@@ -1,4 +1,5 @@
 import { ICreatePropertyDTO } from "@modules/property/dtos/ICreatePropertyDTO";
+import { IUpdateAvailableStateDTO } from "@modules/property/dtos/IUpdateAvailableStateDTO";
 import { IPropertiesRepository } from "@modules/property/repositories/IPropertiesRepository";
 import { getRepository, Repository } from "typeorm";
 import { Property } from "../entities/property";
@@ -55,7 +56,7 @@ class PropertiesRepository implements IPropertiesRepository {
     return allProperties;
   }
 
-  async updateAvailableState( id: string, available: boolean ): Promise<void> {
+  async updateAvailableState({ id, available }: IUpdateAvailableStateDTO): Promise<void> {
     const property = await this.repository.findOne({id})
 
     property.available = available
