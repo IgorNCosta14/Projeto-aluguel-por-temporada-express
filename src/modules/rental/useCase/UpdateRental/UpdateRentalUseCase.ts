@@ -18,12 +18,36 @@ class UpdateRentalUseCase {
             throw new AppError("Rental not found!")
         }
 
-        rental.propertyId = propertyId;
-        rental.userId = userId,
-        rental.startDate = startDate;
-        rental.expectedReturnDate = expectedReturnDate;
-        rental.expectedTotalRate = expectedTotalRate;
-        rental.endDate = endDate;
+        // rental.propertyId = propertyId;
+        // rental.userId = userId,
+        // rental.startDate = startDate;
+        // rental.expectedReturnDate = expectedReturnDate;
+        // rental.expectedTotalRate = expectedTotalRate;
+        // rental.endDate = endDate;
+
+        if(propertyId) {
+            rental.propertyId = propertyId;
+        }
+        
+        if(userId) {
+            rental.userId = userId;
+        }
+        
+        if(startDate) {
+            rental.startDate = startDate;
+        }
+
+        if(expectedReturnDate) {
+            rental.expectedReturnDate = expectedReturnDate;
+        }
+        
+        if(expectedTotalRate) {
+            rental.expectedTotalRate = expectedTotalRate;
+        }
+        
+        if(endDate) {
+            rental.endDate = endDate;
+        }
 
         await this.rentalsRepository.create(rental);
 
