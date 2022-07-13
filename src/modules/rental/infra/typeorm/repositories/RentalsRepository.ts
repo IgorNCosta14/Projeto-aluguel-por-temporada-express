@@ -1,6 +1,6 @@
 import { ICreateRentalDTO } from "@modules/rental/dtos/ICreateRentalDTO";
 import { IRentalsRepository } from "@modules/rental/repositories/IRentalsRepository";
-import { getRepository, Repository } from "typeorm";
+import { getRepository, IsNull, Not, Repository } from "typeorm";
 import { Rental } from "../entities/rental";
 
 class RentalsRepository implements IRentalsRepository {
@@ -71,6 +71,7 @@ class RentalsRepository implements IRentalsRepository {
 
     async listFinishedRentals(): Promise<Rental[]> {
         const rentals = await this.repository.find({
+            where: { endDate: Not(IsNull()) },
             relations: ["property", "user"]
         });
         return rentals;
