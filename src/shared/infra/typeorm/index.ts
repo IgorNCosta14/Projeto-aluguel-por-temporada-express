@@ -5,7 +5,23 @@ export default async (host = "database"): Promise<Connection> => {
   
   return createConnection(
     Object.assign(defaultOptions , {
-      host,
+      host: process.env.NODE_ENV === "test" ? "localhost" : host,
+      database:
+        process.env.NODE_ENV === "test"
+          ? "tests"
+          : defaultOptions.database,
     })
   );
 };
+
+// import { Connection, createConnection, getConnectionOptions } from 'typeorm';
+
+// export default async (host = "database"): Promise<Connection> => {
+//   const defaultOptions = await getConnectionOptions();
+  
+//   return createConnection(
+//     Object.assign(defaultOptions , {
+//       host,
+//     })
+//   );
+// };
