@@ -22,13 +22,39 @@ class UpdatePropertyUseCase {
             throw new AppError("User must be the owner of the property to update it!")
         }
 
-        property.propertyName = propertyName;
-        property.description = description;
-        property.propertyNumber = propertyNumber;
-        property.typeProperty = typeProperty;
-        property.dailyRate = dailyRate;
+        // property.propertyName = propertyName;
+        // property.description = description;
+        // property.propertyNumber = propertyNumber;
+        // property.typeProperty = typeProperty;
+        // property.dailyRate = dailyRate;
+        // property.updatedAt = new Date();
+        // property.lateFee = lateFee;
+
+        if(propertyName) {
+            property.propertyName = propertyName;
+        }
+
+        if(description) {
+            property.description = description;
+        }
+
+        if(propertyNumber) {
+            property.propertyNumber = propertyNumber;
+        }
+
+        if(typeProperty) {
+            property.typeProperty = typeProperty;
+        }
+
+        if(dailyRate) {
+            property.dailyRate = dailyRate;
+        }
+
+        if(lateFee) {
+            property.lateFee = lateFee;
+        }
+        
         property.updatedAt = new Date();
-        property.lateFee = lateFee;
 
         await this.propertiesRepository.create(property);
 
