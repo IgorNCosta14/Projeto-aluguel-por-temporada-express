@@ -22,14 +22,6 @@ class UpdatePropertyUseCase {
             throw new AppError("User must be the owner of the property to update it!")
         }
 
-        // property.propertyName = propertyName;
-        // property.description = description;
-        // property.propertyNumber = propertyNumber;
-        // property.typeProperty = typeProperty;
-        // property.dailyRate = dailyRate;
-        // property.updatedAt = new Date();
-        // property.lateFee = lateFee;
-
         if(propertyName) {
             property.propertyName = propertyName;
         }
