@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Igor\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev @babel-plugin-module-resolver
+  C:\Program Files\nodejs\node.exe C:\Users\Igor\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
 
 PATH: 
-  C:\Python39\Scripts\;C:\Python39\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\OpenJDK\openjdk-11.0.12_7\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\Igor\AppData\Local\Microsoft\WindowsApps;C:\Users\Igor\AppData\Local\GitHubDesktop\bin;C:\Users\Igor\AppData\Local\Android\Sdk\platform-tools;C:\Users\Igor\AppData\Roaming\npm
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python39\Scripts\;C:\Python39\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\OpenJDK\openjdk-11.0.12_7\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\Igor\AppData\Local\Microsoft\WindowsApps;C:\Users\Igor\AppData\Local\GitHubDesktop\bin;C:\Users\Igor\AppData\Local\Android\Sdk\platform-tools;C:\Users\Igor\AppData\Roaming\npm
 
 Yarn version: 
   1.22.17
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@babel-plugin-module-resolver: Request "https://registry.yarnpkg.com/@babel-plugin-module-resolver" returned a 405
-      at Request.params.callback [as _callback] (C:\Users\Igor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:67038:18)
-      at Request.self.callback (C:\Users\Igor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
-      at Request.emit (node:events:527:28)
-      at Request.<anonymous> (C:\Users\Igor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
-      at Request.emit (node:events:527:28)
-      at IncomingMessage.<anonymous> (C:\Users\Igor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
-      at Object.onceWrapper (node:events:641:28)
-      at IncomingMessage.emit (node:events:539:35)
-      at endReadableNT (node:internal/streams/readable:1345:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  Error: EPERM: operation not permitted, unlink 'F:\Estudos\Projetos\Projeto-aluguel-por-temporada-express\node_modules\.bin\ts-node-dev'
 
 npm manifest: 
   {
@@ -54,17 +44,20 @@ npm manifest:
     },
     "devDependencies": {
       "@babel/core": "^7.18.6",
+      "@babel/plugin-proposal-decorators": "^7.18.6",
       "@babel/preset-env": "^7.18.6",
       "@babel/preset-typescript": "^7.18.6",
       "@types/bcryptjs": "^2.4.2",
       "@types/express": "^4.17.13",
       "@types/jest": "^28.1.4",
       "@types/jsonwebtoken": "^8.5.8",
-      "@types/node": "^17.0.25",
+      "@types/node": "^18.6.2",
       "@types/uuid": "^8.3.4",
       "@typescript-eslint/eslint-plugin": "^5.21.0",
       "@typescript-eslint/parser": "^5.21.0",
       "babel-jest": "^28.1.2",
+      "babel-plugin-module-resolver": "^4.1.0",
+      "babel-plugin-transform-typescript-metadata": "^0.3.2",
       "cross-env": "^7.0.3",
       "eslint": "^8.14.0",
       "eslint-config-prettier": "^8.5.0",
@@ -391,6 +384,17 @@ Lockfile:
       "@babel/helper-plugin-utils" "^7.18.6"
       "@babel/plugin-syntax-class-static-block" "^7.14.5"
   
+  "@babel/plugin-proposal-decorators@^7.18.6":
+    version "7.18.6"
+    resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.18.6.tgz#68e9fd0f022b944f84a8824bb28bfaee724d2595"
+    integrity sha512-gAdhsjaYmiZVxx5vTMiRfj31nB7LhwBJFMSLzeDxc7X4tKLixup0+k9ughn0RcpBrv9E3PBaXJW7jF5TCihAOg==
+    dependencies:
+      "@babel/helper-create-class-features-plugin" "^7.18.6"
+      "@babel/helper-plugin-utils" "^7.18.6"
+      "@babel/helper-replace-supers" "^7.18.6"
+      "@babel/helper-split-export-declaration" "^7.18.6"
+      "@babel/plugin-syntax-decorators" "^7.18.6"
+  
   "@babel/plugin-proposal-dynamic-import@^7.18.6":
     version "7.18.6"
     resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-dynamic-import/-/plugin-proposal-dynamic-import-7.18.6.tgz#72bcf8d408799f547d759298c3c27c7e7faa4d94"
@@ -520,6 +524,13 @@ Lockfile:
     integrity sha512-b+YyPmr6ldyNnM6sqYeMWE+bgJcJpO6yS4QD7ymxgH34GBPNDM/THBh8iunyvKIZztiwLH4CJZ0RxTk9emgpjw==
     dependencies:
       "@babel/helper-plugin-utils" "^7.14.5"
+  
+  "@babel/plugin-syntax-decorators@^7.18.6":
+    version "7.18.6"
+    resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-decorators/-/plugin-syntax-decorators-7.18.6.tgz#2e45af22835d0b0f8665da2bfd4463649ce5dbc1"
+    integrity sha512-fqyLgjcxf/1yhyZ6A+yo1u9gJ7eleFQod2lkaUsF9DQ7sbbY3Ligym3L0+I2c0WmqNKDpoD9UTb1AKP3qRMOAQ==
+    dependencies:
+      "@babel/helper-plugin-utils" "^7.18.6"
   
   "@babel/plugin-syntax-dynamic-import@^7.8.3":
     version "7.8.3"
@@ -1316,6 +1327,13 @@ Lockfile:
       "@jridgewell/resolve-uri" "^3.0.3"
       "@jridgewell/sourcemap-codec" "^1.4.10"
   
+  "@nestjs/typeorm@^9.0.0":
+    version "9.0.0"
+    resolved "https://registry.yarnpkg.com/@nestjs/typeorm/-/typeorm-9.0.0.tgz#dea9e5ba006dc06911712660d8aa0787b7791652"
+    integrity sha512-pTH9ZlngObaPlt7//CY2lSb+3ouFczUQJln1ctXIpGwZdY3QBrwsxF3hnJXsCYNa+IPfz27qJUeoAQmp65kGZw==
+    dependencies:
+      uuid "8.3.2"
+  
   "@nodelib/fs.scandir@2.1.5":
     version "2.1.5"
     resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -1509,10 +1527,15 @@ Lockfile:
     resolved "https://registry.npmjs.org/@types/mime/-/mime-1.3.2.tgz"
     integrity sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==
   
-  "@types/node@*", "@types/node@^17.0.25":
+  "@types/node@*":
     version "17.0.25"
     resolved "https://registry.npmjs.org/@types/node/-/node-17.0.25.tgz"
     integrity sha512-wANk6fBrUwdpY4isjWrKTufkrXdu1D2YHCot2fD/DfWxF5sMrVSA+KN7ydckvaTCh0HiqX9IVl0L5/ZoXg5M7w==
+  
+  "@types/node@^18.6.2":
+    version "18.6.2"
+    resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.2.tgz#ffc5f0f099d27887c8d9067b54e55090fcd54126"
+    integrity sha512-KcfkBq9H4PI6Vpu5B/KoPeuVDAbmi+2mDBqGPGUgoL7yXQtcWGu2vJWmmRkneWK3Rh0nIAX192Aa87AqKHYChQ==
   
   "@types/prettier@^2.1.5":
     version "2.6.3"
@@ -1568,11 +1591,6 @@ Lockfile:
     integrity sha512-gmEaFwpj/7f/ROdtIlci1R1VYU1J4j95m8T+Tj3iBgiBFKg1foE/PSl93bBd5T9LDXNPo8UlNN6W0qwD8O5OaA==
     dependencies:
       "@types/yargs-parser" "*"
-  
-  "@types/zen-observable@0.8.3":
-    version "0.8.3"
-    resolved "https://registry.npmjs.org/@types/zen-observable/-/zen-observable-0.8.3.tgz"
-    integrity sha512-fbF6oTd4sGGy0xjHPKAt+eS2CrxJ3+6gQ3FGcBoIJR2TLAyCkCyI8JqZNy+FeON0AhVgNJoUumVoZQjBFUqHkw==
   
   "@typescript-eslint/eslint-plugin@^5.21.0":
     version "5.21.0"
@@ -1809,6 +1827,17 @@ Lockfile:
       "@types/babel__core" "^7.1.14"
       "@types/babel__traverse" "^7.0.6"
   
+  babel-plugin-module-resolver@^4.1.0:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/babel-plugin-module-resolver/-/babel-plugin-module-resolver-4.1.0.tgz#22a4f32f7441727ec1fbf4967b863e1e3e9f33e2"
+    integrity sha512-MlX10UDheRr3lb3P0WcaIdtCSRlxdQsB1sBqL7W0raF070bGl1HQQq5K3T2vf2XAYie+ww+5AKC/WrkjRO2knA==
+    dependencies:
+      find-babel-config "^1.2.0"
+      glob "^7.1.6"
+      pkg-up "^3.1.0"
+      reselect "^4.0.0"
+      resolve "^1.13.1"
+  
   babel-plugin-polyfill-corejs2@^0.3.1:
     version "0.3.1"
     resolved "https://registry.yarnpkg.com/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.3.1.tgz#440f1b70ccfaabc6b676d196239b138f8a2cfba5"
@@ -1832,6 +1861,13 @@ Lockfile:
     integrity sha512-Y2B06tvgHYt1x0yz17jGkGeeMr5FeKUu+ASJ+N6nB5lQ8Dapfg42i0OVrf8PNGJ3zKL4A23snMi1IRwrqqND7A==
     dependencies:
       "@babel/helper-define-polyfill-provider" "^0.3.1"
+  
+  babel-plugin-transform-typescript-metadata@^0.3.2:
+    version "0.3.2"
+    resolved "https://registry.yarnpkg.com/babel-plugin-transform-typescript-metadata/-/babel-plugin-transform-typescript-metadata-0.3.2.tgz#7a327842d8c36ffe07ee1b5276434e56c297c9b7"
+    integrity sha512-mWEvCQTgXQf48yDqgN7CH50waTyYBeP2Lpqx4nNWab9sxEpdXVeKgfj1qYI2/TgUPQtNFZ85i3PemRtnXVYYJg==
+    dependencies:
+      "@babel/helper-plugin-utils" "^7.0.0"
   
   babel-preset-current-node-syntax@^1.0.0:
     version "1.0.1"
@@ -2155,6 +2191,11 @@ Lockfile:
       shebang-command "^2.0.0"
       which "^2.0.1"
   
+  date-fns@^2.28.0:
+    version "2.29.1"
+    resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.1.tgz#9667c2615525e552b5135a3116b95b1961456e60"
+    integrity sha512-dlLD5rKaKxpFdnjrs+5azHDFOPEu4ANy/LTh04A1DTzMM7qoajmKCBc8pkKRFT41CNzw+4gQh79X5C+Jq27HAw==
+  
   dayjs@^1.11.3:
     version "1.11.3"
     resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.3.tgz#4754eb694a624057b9ad2224b67b15d552589258"
@@ -2167,7 +2208,7 @@ Lockfile:
     dependencies:
       ms "2.0.0"
   
-  debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2:
+  debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.3:
     version "4.3.4"
     resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
     integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -2236,10 +2277,10 @@ Lockfile:
     dependencies:
       esutils "^2.0.2"
   
-  dotenv@^8.2.0:
-    version "8.6.0"
-    resolved "https://registry.npmjs.org/dotenv/-/dotenv-8.6.0.tgz"
-    integrity sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==
+  dotenv@^16.0.0:
+    version "16.0.1"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.1.tgz#8f8f9d94876c35dac989876a5d3a82a267fdce1d"
+    integrity sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==
   
   dynamic-dedupe@^0.3.0:
     version "0.3.0"
@@ -2590,6 +2631,21 @@ Lockfile:
       statuses "~1.5.0"
       unpipe "~1.0.0"
   
+  find-babel-config@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/find-babel-config/-/find-babel-config-1.2.0.tgz#a9b7b317eb5b9860cda9d54740a8c8337a2283a2"
+    integrity sha512-jB2CHJeqy6a820ssiqwrKMeyC6nNdmrcgkKWJWmpoxpE8RKciYJXCcXRq1h2AzCo5I5BJeN2tkGEO3hLTuePRA==
+    dependencies:
+      json5 "^0.5.1"
+      path-exists "^3.0.0"
+  
+  find-up@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/find-up/-/find-up-3.0.0.tgz#49169f1d7993430646da61ecc5ae355c21c97b73"
+    integrity sha512-1yD6RmLI1XBfxugvORwlck6f75tYL+iR0jqwsOrOxMZyGYqUuDhJ0l4AXdO1iX/FTs9cBAMEk1gWSEx1kSbylg==
+    dependencies:
+      locate-path "^3.0.0"
+  
   find-up@^4.0.0, find-up@^4.1.0:
     version "4.1.0"
     resolved "https://registry.yarnpkg.com/find-up/-/find-up-4.1.0.tgz#97afe7d6cdc0bc5928584b7c8d7b16e8a9aa5d19"
@@ -2696,7 +2752,7 @@ Lockfile:
       once "^1.3.0"
       path-is-absolute "^1.0.0"
   
-  glob@^7.1.4:
+  glob@^7.1.4, glob@^7.2.0:
     version "7.2.3"
     resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
     integrity sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==
@@ -3317,7 +3373,7 @@ Lockfile:
       argparse "^1.0.7"
       esprima "^4.0.0"
   
-  js-yaml@^4.0.0, js-yaml@^4.1.0:
+  js-yaml@^4.1.0:
     version "4.1.0"
     resolved "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz"
     integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
@@ -3348,6 +3404,11 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.npmjs.org/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz"
     integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
+  
+  json5@^0.5.1:
+    version "0.5.1"
+    resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
+    integrity sha512-4xrs1aW+6N5DalkqSVA8fxh458CXvR99WU8WLKmq4v8eWAL86Xo3BVqyd3SkA9wEVjCMqyvvRRkshAdOnBp5rw==
   
   json5@^1.0.1:
     version "1.0.1"
@@ -3416,6 +3477,14 @@ Lockfile:
     version "1.2.4"
     resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
     integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
+  
+  locate-path@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
+    integrity sha512-7AO748wWnIhNqAuaty2ZWHkQHRSNfPVIsPIfwEOWO22AmaoVrWavlOcMR5nzTLNYvp36X220/maaRsrec1G65A==
+    dependencies:
+      p-locate "^3.0.0"
+      path-exists "^3.0.0"
   
   locate-path@^5.0.0:
     version "5.0.0"
@@ -3681,12 +3750,19 @@ Lockfile:
       type-check "^0.4.0"
       word-wrap "^1.2.3"
   
-  p-limit@^2.2.0:
+  p-limit@^2.0.0, p-limit@^2.2.0:
     version "2.3.0"
     resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-2.3.0.tgz#3dd33c647a214fdfffd835933eb086da0dc21db1"
     integrity sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==
     dependencies:
       p-try "^2.0.0"
+  
+  p-locate@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-3.0.0.tgz#322d69a05c0264b25997d9f40cd8a891ab0064a4"
+    integrity sha512-x+12w/To+4GFfgJhBEpiDcLozRJGegY+Ei7/z0tSLkMmxGZNybVMSfWj9aJn8Z5Fc7dBUNJOOVgPv2H7IwulSQ==
+    dependencies:
+      p-limit "^2.0.0"
   
   p-locate@^4.1.0:
     version "4.1.0"
@@ -3743,6 +3819,11 @@ Lockfile:
     version "1.3.3"
     resolved "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz"
     integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
+  
+  path-exists@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-3.0.0.tgz#ce0ebeaa5f78cb18925ea7d810d7b59b010fd515"
+    integrity sha512-bpC7GYwiDYQ4wYLe+FA8lhRjhQCMcQGuSgGGqDkg/QerRWw9CmGRT0iSOVRSZJ29NMLZgIzqaljJ63oaL4NIJQ==
   
   path-exists@^4.0.0:
     version "4.0.0"
@@ -3846,6 +3927,13 @@ Lockfile:
     integrity sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==
     dependencies:
       find-up "^4.0.0"
+  
+  pkg-up@^3.1.0:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/pkg-up/-/pkg-up-3.1.0.tgz#100ec235cc150e4fd42519412596a28512a0def5"
+    integrity sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==
+    dependencies:
+      find-up "^3.0.0"
   
   postgres-array@~2.0.0:
     version "2.0.0"
@@ -4017,6 +4105,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz"
     integrity sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
   
+  reselect@^4.0.0:
+    version "4.1.6"
+    resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.6.tgz#19ca2d3d0b35373a74dc1c98692cdaffb6602656"
+    integrity sha512-ZovIuXqto7elwnxyXbBtCPo9YFEr3uJqj2rRbcOOog1bmu2Ag85M4hixSwFWyaBMKXNgvPaJ9OSu9SkBPIeJHQ==
+  
   resolve-cwd@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/resolve-cwd/-/resolve-cwd-3.0.0.tgz#0f0075f1bb2544766cf73ba6a6e2adfebcb13f2d"
@@ -4048,7 +4141,7 @@ Lockfile:
       path-parse "^1.0.7"
       supports-preserve-symlinks-flag "^1.0.0"
   
-  resolve@^1.14.2, resolve@^1.20.0:
+  resolve@^1.13.1, resolve@^1.14.2, resolve@^1.20.0:
     version "1.22.1"
     resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.1.tgz#27cb2ebb53f91abb49470a928bba7558066ac177"
     integrity sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==
@@ -4462,9 +4555,9 @@ Lockfile:
     resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
     integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
   
-  tslib@^2.1.0:
+  tslib@^2.3.1:
     version "2.4.0"
-    resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
+    resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
     integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
   
   tsutils@^3.21.0:
@@ -4511,28 +4604,28 @@ Lockfile:
       media-typer "0.3.0"
       mime-types "~2.1.24"
   
-  typeorm@^0.2.41:
-    version "0.2.45"
-    resolved "https://registry.npmjs.org/typeorm/-/typeorm-0.2.45.tgz"
-    integrity sha512-c0rCO8VMJ3ER7JQ73xfk0zDnVv0WDjpsP6Q1m6CVKul7DB9iVdWLRjPzc8v2eaeBuomsbZ2+gTaYr8k1gm3bYA==
+  typeorm@^0.3.7:
+    version "0.3.7"
+    resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.3.7.tgz#5776ed5058f0acb75d64723b39ff458d21de64c1"
+    integrity sha512-MsPJeP6Zuwfe64c++l80+VRqpGEGxf0CkztIEnehQ+CMmQPSHjOnFbFxwBuZ2jiLqZTjLk2ZqQdVF0RmvxNF3Q==
     dependencies:
       "@sqltools/formatter" "^1.2.2"
       app-root-path "^3.0.0"
       buffer "^6.0.3"
       chalk "^4.1.0"
       cli-highlight "^2.1.11"
-      debug "^4.3.1"
-      dotenv "^8.2.0"
-      glob "^7.1.6"
-      js-yaml "^4.0.0"
+      date-fns "^2.28.0"
+      debug "^4.3.3"
+      dotenv "^16.0.0"
+      glob "^7.2.0"
+      js-yaml "^4.1.0"
       mkdirp "^1.0.4"
       reflect-metadata "^0.1.13"
       sha.js "^2.4.11"
-      tslib "^2.1.0"
+      tslib "^2.3.1"
       uuid "^8.3.2"
       xml2js "^0.4.23"
-      yargs "^17.0.1"
-      zen-observable-ts "^1.0.0"
+      yargs "^17.3.1"
   
   typescript@^4.6.3:
     version "4.6.3"
@@ -4587,7 +4680,7 @@ Lockfile:
     resolved "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz"
     integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
   
-  uuid@^8.3.2:
+  uuid@8.3.2, uuid@^8.3.2:
     version "8.3.2"
     resolved "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
     integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
@@ -4708,19 +4801,6 @@ Lockfile:
       y18n "^5.0.5"
       yargs-parser "^20.2.2"
   
-  yargs@^17.0.1:
-    version "17.4.1"
-    resolved "https://registry.npmjs.org/yargs/-/yargs-17.4.1.tgz"
-    integrity sha512-WSZD9jgobAg3ZKuCQZSa3g9QOJeCCqLoLAykiWgmXnDo9EPnn4RPf5qVTtzgOx66o6/oqhcA5tHtJXpG8pMt3g==
-    dependencies:
-      cliui "^7.0.2"
-      escalade "^3.1.1"
-      get-caller-file "^2.0.5"
-      require-directory "^2.1.1"
-      string-width "^4.2.3"
-      y18n "^5.0.5"
-      yargs-parser "^21.0.0"
-  
   yargs@^17.3.1:
     version "17.5.1"
     resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.5.1.tgz#e109900cab6fcb7fd44b1d8249166feb0b36e58e"
@@ -4738,16 +4818,3 @@ Lockfile:
     version "3.1.1"
     resolved "https://registry.npmjs.org/yn/-/yn-3.1.1.tgz"
     integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
-  
-  zen-observable-ts@^1.0.0:
-    version "1.1.0"
-    resolved "https://registry.npmjs.org/zen-observable-ts/-/zen-observable-ts-1.1.0.tgz"
-    integrity sha512-1h4zlLSqI2cRLPJUHJFL8bCWHhkpuXkF+dbGkRaWjgDIG26DmzyshUMrdV/rL3UnR+mhaX4fRq8LPouq0MYYIA==
-    dependencies:
-      "@types/zen-observable" "0.8.3"
-      zen-observable "0.8.15"
-  
-  zen-observable@0.8.15:
-    version "0.8.15"
-    resolved "https://registry.npmjs.org/zen-observable/-/zen-observable-0.8.15.tgz"
-    integrity sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==

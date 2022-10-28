@@ -1,11 +1,6 @@
 import { UsersRepository } from "@modules/account/users/infra/typeorm/repositories/UsersRepository";
 import { AppError } from "@shared/errors/AppError";
 import { NextFunction, Request, Response } from "express";
-import { verify } from "jsonwebtoken";
-
-interface IPayload {
-  sub: string;
-}
 
 export async function checkLandLord(
   request: Request,

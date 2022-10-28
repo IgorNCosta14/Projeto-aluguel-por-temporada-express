@@ -18,13 +18,6 @@ class UpdateRentalUseCase {
             throw new AppError("Rental not found!")
         }
 
-        // rental.propertyId = propertyId;
-        // rental.userId = userId,
-        // rental.startDate = startDate;
-        // rental.expectedReturnDate = expectedReturnDate;
-        // rental.expectedTotalRate = expectedTotalRate;
-        // rental.endDate = endDate;
-
         if(propertyId) {
             rental.propertyId = propertyId;
         }

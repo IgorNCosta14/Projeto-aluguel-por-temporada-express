@@ -12,13 +12,13 @@ export async function checkAuthenticated(
   response: Response,
   next: NextFunction
 ) {
-  const authHearder = request.headers.authorization;
+  const authHeader = request.headers.authorization;
 
-  if (!authHearder) {
+  if (!authHeader) {
     throw new AppError("Token missing", 401);
   }
 
-  const [, token] = authHearder.split(" ");
+  const [, token] = authHeader.split(" ");
 
   try {
     const { sub: userId } = verify(

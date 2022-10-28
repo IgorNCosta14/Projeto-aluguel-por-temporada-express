@@ -31,15 +31,20 @@ class AuthenticateUserUseCase {
       throw new AppError("Email or password incorrect");
     }
 
+    if (user.activeUser === false) {
+      throw new AppError("Inactive user!");
+    }
+
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
       throw new AppError("Email or password incorrect");
     }
 
-    const token = sign({}, "e3928a3bc4be46516aa33a79bbdfdb08", {
+    
+    const token = sign({}, 'e3928a3bc4be46516aa33a79bbdfdb08', {
       subject: user.id,
-      expiresIn: "5d",
+      expiresIn: '5d',
     });
 
     const tokenResp: IResponse = {
